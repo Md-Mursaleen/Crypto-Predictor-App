@@ -1,20 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from "react";
+import { StyleSheet, View, LogBox } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import { RecoilRoot } from "recoil";
+import WatchlistContext from "./src/contexts/WatchlistContext";
+import * as NavigationBar from "expo-navigation-bar";
+import RootNavigation from "./src/navigation/RootNavigation";
+
+LogBox.ignoreAllLogs();
 
 export default function App() {
+  useEffect(() => {
+    NavigationBar.setBackgroundColorAsync("white");
+  }, []);
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <RecoilRoot>
+      <WatchlistContext>
+        <View style={styles.container}>
+          <RootNavigation />
+          <StatusBar style="light" />
+        </View>
+      </WatchlistContext>
+    </RecoilRoot>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    backgroundColor: "white"
+  }
 });

@@ -1,11 +1,17 @@
 {
   "expo": {
-    "name": "crypto-tracker-app",
+    "name": "CoinTracking - Crypto Portfolio",
     "slug": "crypto-tracker-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "plugins": [
+      "@react-native-google-signin/google-signin"
+    ],
+    "updates": {
+      "useClassicUpdates": true
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -18,6 +24,8 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.cointracking.app",
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -25,6 +33,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7980ccb3-6087-4575-9c94-8a6d4a06d0d4"
+      }
     }
   }
 }
