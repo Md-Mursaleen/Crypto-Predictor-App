@@ -31,9 +31,7 @@ const ProfileScreen = () => {
                 <Text style={styles.assetsText}>Your Assets</Text>
                 <View style={{ marginTop: 20 }}>
                     <View style={styles.subMiddleContainer}>
-                        <View>
-                            <MaterialIcons name="attach-money" size={32} color="black" />
-                        </View>
+                        <MaterialIcons name="attach-money" size={32} color="black" />
                         <View style={{ marginLeft: 15 }}>
                             <Text style={styles.middleContainerText} onPress={() => navigation.navigate("Portfolio")}>Current Assets</Text>
                             <Text style={styles.middleContainerSubText} onPress={() => navigation.navigate("Asset")}>Add Asset</Text>
@@ -41,9 +39,7 @@ const ProfileScreen = () => {
                     </View>
                     <View style={styles.borderStyle} />
                     <View style={styles.middleContainerBottomContainer}>
-                        <View>
-                            <FontAwesome5 name="star" size={22} color="black" />
-                        </View>
+                        <FontAwesome5 name="star" size={22} color="black" />
                         <View style={{ marginLeft: 20 }}>
                             <Text style={styles.middleContainerText} onPress={() => navigation.navigate("Watchlist")}>Watchlist Assets</Text>
                             <Text style={styles.middleContainerSubText} onPress={() => navigation.navigate("Markets")} >Add Watchlist</Text>

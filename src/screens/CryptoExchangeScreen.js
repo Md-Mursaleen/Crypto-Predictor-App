@@ -25,7 +25,10 @@ const CoinsExchangeScreen = () => {
                 <Ionicons name="chevron-back-sharp" size={25} color="#636b77" onPress={() => navigation.goBack()} style={{ marginLeft: -8 }} />
                 <Text style={styles.headingTextStyle}>Coin Exchange</Text>
             </View>
-            <Text style={styles.titleTextStyle}>{isBuy ? "Buy " : "Sell "}{name}</Text>
+            <View style={styles.informationContainer}>
+                <Image source={{ uri: image.small }} style={styles.coinImageStyle} />
+                <Text style={styles.symbolTextStyle}>{symbol.toUpperCase()}</Text>
+            </View>
             <Text style={styles.subTitleTextStyle}>1{symbol.toUpperCase()}{" = "}{"$"}{usd}</Text>
             <Image source={require("../../assets/images/order-image.png")} style={styles.imageStyle} />
             <View style={styles.inputsContainer}>
@@ -75,22 +78,31 @@ const styles = StyleSheet.create({
         fontSize: 19,
         fontWeight: "600"
     },
-    titleTextStyle: {
+    informationContainer: {
         marginTop: 20,
-        fontSize: 23,
-        fontWeight: "bold",
-        color: "black",
-        textAlign: "center"
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    coinImageStyle: {
+        width: 26,
+        height: 26
+    },
+    symbolTextStyle: {
+        marginHorizontal: 5,
+        fontSize: 18,
+        fontWeight: "600",
+        color: "black"
     },
     subTitleTextStyle: {
-        marginTop: 10,
+        marginTop: 15,
         fontSize: 15,
         fontWeight: "600",
         color: "grey",
         textAlign: "center"
     },
     imageStyle: {
-        marginTop: 10,
+        marginTop: 15,
         height: 180,
         alignSelf: "center",
         resizeMode: "contain"
