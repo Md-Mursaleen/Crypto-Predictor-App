@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Image, StyleSheet, Text, TextInput, View, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, Text, TextInput, View, TouchableOpacity, Alert } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
@@ -19,6 +19,13 @@ const CoinsExchangeScreen = () => {
         }
         setCoinUSDValue((amount * usd).toString());
     }, [coinAmount]);
+    const onPressedPlaceOrder = () => {
+        Alert.alert("Hey", "Your order has been placed",
+            [{
+                text: "Go Home",
+                onPress: () => navigation.navigate("BottomTab")
+            }]);
+    };
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
@@ -53,7 +60,7 @@ const CoinsExchangeScreen = () => {
                     <Text style={styles.inputTextStyle}>USD</Text>
                 </View>
             </View>
-            <TouchableOpacity style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.buttonContainer} onPress={onPressedPlaceOrder}>
                 <Text style={styles.buttonText}>Place Order</Text>
             </TouchableOpacity>
         </View>
@@ -102,7 +109,7 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     imageStyle: {
-        marginTop: 15,
+        marginTop: 20,
         height: 180,
         alignSelf: "center",
         resizeMode: "contain"
