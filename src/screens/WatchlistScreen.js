@@ -40,13 +40,14 @@ const WatchlistScreen = () => {
                     loop={true}
                     style={styles.lottieStyle} />
                 <View>
-                    <Text style={styles.headerTitleStyle}>Your watchlist is empty</Text>
-                    <Text style={[styles.headerSubTitleStyle, { marginTop: 20 }]}>Start building your watchlist by clicking</Text>
-                    <Text style={[styles.headerSubTitleStyle, { marginTop: 5 }]}>button below.</Text>
+                    <Text style={styles.headerTitleTextStyle}>Your watchlist is empty</Text>
+                    <Text style={[styles.headerSubTitleTextStyle, { marginTop: 20 }]}>
+                        Start building your watchlist by clicking</Text>
+                    <Text style={[styles.headerSubTitleTextStyle, { marginTop: 5 }]}>button below.</Text>
                 </View>
-                < Pressable style={styles.buttonContainer}
+                <Pressable style={styles.buttonContainer}
                     onPress={() => navigation.navigate("Markets")}>
-                    <Text style={styles.buttonText}>Add New Coins</Text>
+                    <Text style={styles.buttonTextStyle}>Add New Coins</Text>
                 </Pressable >
             </View>
         ) : (
@@ -61,22 +62,25 @@ const WatchlistScreen = () => {
                     </View>
                     <View style={styles.watchlistedSubItemContainer}>
                         <Text style={styles.watchlistedSubTextStyle}>Market Cap</Text>
-                        <AntDesign name="caretdown" color="#5e80fc" size={12} style={{ marginRight: 20 }} />
+                        <AntDesign name="caretdown" color="#5e80fc" size={12}
+                            style={{ marginRight: 20 }} />
                     </View>
                     <View style={[styles.watchlistedSubItemContainer, { marginLeft: 10 }]}>
                         <Text style={styles.watchlistedSubTextStyle}>24h%</Text>
-                        <AntDesign name="caretdown" color="#5e80fc" size={12} style={{ marginRight: 10 }} />
+                        <AntDesign name="caretdown" color="#5e80fc" size={12}
+                            style={{ marginRight: 10 }} />
                     </View>
                     <View style={[styles.watchlistedSubItemContainer, { marginRight: -15 }]}>
                         <Text style={styles.watchlistedSubTextStyle}>Price(USD)</Text>
-                        <AntDesign name="caretdown" color="#5e80fc" size={12} style={{ marginRight: 8 }} />
+                        <AntDesign name="caretdown" color="#5e80fc" size={12}
+                            style={{ marginRight: 8 }} />
                     </View>
                 </View>
                 <FlatList data={cryptoCurrency} renderItem={({ item }) => (
                     <CryptoItem cryptodata={item} />
                 )} refreshControl={
                     <RefreshControl refreshing={loading}
-                        tintColor="white"
+                        tintColor="#000000"
                         onRefresh={cryptoId?.length > 0 ? fetchWatchlistedCrypto : null} />
                 } style={{ marginTop: 8 }} />
             </View>
@@ -89,7 +93,7 @@ export default WatchlistScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "white"
+        backgroundColor: "#ffffff"
     },
     noWatchlistHeaderContainer: {
         paddingTop: 50,
@@ -103,7 +107,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         fontSize: 23,
         fontWeight: "bold",
-        color: "black"
+        color: "#000000"
     },
     lottieStyle: {
         marginTop: 60,
@@ -111,14 +115,14 @@ const styles = StyleSheet.create({
         height: 185,
         alignSelf: "center"
     },
-    headerTitleStyle: {
+    headerTitleTextStyle: {
         marginTop: 75,
         alignSelf: "center",
         fontSize: 27,
         fontWeight: "bold",
-        color: "black"
+        color: "#000000"
     },
-    headerSubTitleStyle: {
+    headerSubTitleTextStyle: {
         alignSelf: "center",
         fontSize: 16.5,
         fontWeight: "500",
@@ -132,14 +136,14 @@ const styles = StyleSheet.create({
         backgroundColor: "#4169e1",
         borderRadius: 5
     },
-    buttonText: {
+    buttonTextStyle: {
         fontSize: 16,
         fontWeight: "600",
-        color: "white"
+        color: "#ffffff"
     },
     watchlistedContainer: {
         flex: 1,
-        backgroundColor: "white"
+        backgroundColor: "#ffffff"
     },
     watchlistedHeaderContainer: {
         paddingTop: 50,

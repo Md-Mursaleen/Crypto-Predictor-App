@@ -15,13 +15,16 @@ const PortfolioAssetItem = ({ assetitem }) => {
             <View style={styles.priceContainer}>
                 <Text style={styles.textStyle}>${(current_price).toFixed(2)}</Text>
                 <View style={styles.percentageChangeContainer}>
-                    <AntDesign name={price_change_percentage_24h > 0 ? "caretup" : "caretdown"} color={pricePercentage} style={styles.iconStyle} />
-                    <Text style={[styles.percentageChangeText, { color: pricePercentage }]}>{price_change_percentage_24h?.toFixed(2)}%</Text>
+                    <AntDesign name={price_change_percentage_24h > 0 ? "caretup" : "caretdown"}
+                        color={pricePercentage}
+                        style={styles.iconStyle} />
+                    <Text style={[styles.percentageChangeText, { color: pricePercentage }]}>
+                        {price_change_percentage_24h?.toFixed(2)}%</Text>
                 </View>
             </View>
             <View style={styles.quantityContainer}>
                 <Text style={styles.textStyle}>${(quantity * current_price)?.toFixed(2)}</Text>
-                <Text style={styles.symbolStyle}>{quantity} {symbol}</Text>
+                <Text style={styles.symbolTextStyle}>{quantity} {symbol}</Text>
             </View>
         </View>
     );
@@ -35,9 +38,10 @@ const styles = StyleSheet.create({
         padding: 15,
         flexDirection: "row",
         alignItems: "center",
-        backgroundColor: "white"
+        backgroundColor: "#ffffff"
     },
     imageStyle: {
+        marginLeft: -5,
         marginRight: 10,
         width: 27,
         height: 27
@@ -46,7 +50,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: "600",
         alignSelf: "flex-end",
-        color: "black"
+        color: "#000000"
     },
     symbolTextStyle: {
         fontSize: 13.5,

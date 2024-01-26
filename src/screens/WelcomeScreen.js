@@ -3,31 +3,35 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Feather from "react-native-vector-icons/Feather";
 
-const HomeScreen = () => {
+const WelcomeScreen = () => {
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
-            <Image source={require("../../assets/images/welcome-image.png")} style={styles.imageStyle} />
+            <Image source={require("../../assets/images/welcome-image.png")}
+                style={styles.imageStyle} />
             <View style={styles.headerContainer}>
                 <Text style={styles.titleTextStyle}>Welcome to</Text>
-                <Image source={require("../../assets/images/banner-image.png")} style={styles.bannerImageStyle} />
+                <Image source={require("../../assets/images/banner-image.png")}
+                    style={styles.bannerImageStyle} />
             </View>
-            <Text style={[styles.subTitleTextStyle, { marginTop: -5 }]}>Invest your virtual crypto and</Text>
+            <Text style={[styles.subTitleTextStyle, { marginTop: -5 }]}>
+                Invest your virtual crypto and</Text>
             <Text style={styles.subTitleTextStyle}>compete with others</Text>
-            <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate("BottomTab")}>
+            <TouchableOpacity onPress={() => navigation.navigate("BottomTab")}
+                style={styles.buttonContainer}>
                 <Text style={styles.buttonTextStyle}>Start Investing</Text>
-                <Feather name="arrow-right" size={24} color="white" style={{ marginLeft: "auto" }} />
+                <Feather name="arrow-right" size={24} color="#ffffff" style={{ marginLeft: "auto" }} />
             </TouchableOpacity>
         </View>
     );
 }
 
-export default HomeScreen;
+export default WelcomeScreen;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "white"
+        backgroundColor: "#ffffff"
     },
     imageStyle: {
         marginTop: 65,
@@ -76,6 +80,6 @@ const styles = StyleSheet.create({
         marginLeft: "auto",
         fontSize: 16,
         fontWeight: "500",
-        color: "white"
+        color: "#ffffff"
     }
 });

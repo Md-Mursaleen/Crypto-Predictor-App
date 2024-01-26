@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Image, StyleSheet, Dimensions, TextInput, ActivityIndicator, Keyboard, TouchableOpacity } from "react-native";
+import {
+    View, Text, Image, StyleSheet, Dimensions,
+    ActivityIndicator, Keyboard, TouchableOpacity
+} from "react-native";
 import { LineChart } from "react-native-wagmi-charts";
 import { CandlestickChart } from "react-native-wagmi-charts";
 import { useNavigation } from "@react-navigation/native";
@@ -23,7 +26,7 @@ const CryptoDetailsScreen = ({ route }) => {
     const SIZE = Dimensions.get("window").width;
     const [cryptoValue, setCryptoValue] = useState("1");
     const [usdValue, setUsdValue] = useState("");
-    const [selectedText, setSelectedText] = useState("1");
+    const [selectedText, setSelectedText] = useState("7");
     const [candleChartVisible, setCandleChartVisible] = useState(true);
     const [keyboardOpen, setKeyboardOpen] = useState(false);
     const fetchData = async () => {
@@ -43,13 +46,14 @@ const CryptoDetailsScreen = ({ route }) => {
     };
     useEffect(() => {
         fetchData();
-        fetchChartData(1);
-        fetchCandleChartData();
+        fetchChartData(7);
+        fetchCandleChartData(7);
     }, []);
     if (loading || !cryptoCoin || !chartData || !candlechartData) {
         return <ActivityIndicator size="large" />
     }
-    const { id, name, symbol, image, market_data: { current_price: { usd }, market_cap_rank, price_change_percentage_24h } } = cryptoCoin;
+    const { id, name, symbol, image, market_data:
+        { current_price: { usd }, market_cap_rank, price_change_percentage_24h } } = cryptoCoin;
     const { prices } = chartData;
     const pricePercentage = price_change_percentage_24h < 0 ? "#c14850" : "#26b985";
     const formatPrice = ({ value }) => {
@@ -77,7 +81,6 @@ const CryptoDetailsScreen = ({ route }) => {
     };
     const cryptoinWatchlist = () =>
         cryptoId.some((cryptoIdValue) => cryptoIdValue === id);
-
     const checkWatchlistData = () => {
         if (cryptoinWatchlist()) {
             return removeWatchlistData(id);
@@ -98,10 +101,10 @@ const CryptoDetailsScreen = ({ route }) => {
         setShowingCandleChart(true);
     };
     const filterValues = [
-        {
-            day: "1",
-            value: "24h"
-        },
+        // {
+        //     day: "1",
+        //     value: "24h"
+        // },
         {
             day: "7",
             value: "7d"
@@ -141,19 +144,21 @@ const CryptoDetailsScreen = ({ route }) => {
         <View style={styles.container}>
             <LineChart.Provider data={prices.map(([timestamp, value]) => ({ timestamp, value }))}>
                 <View style={styles.headerContainer}>
-                    <Ionicons name="chevron-back-sharp" size={25} color="#636b77" onPress={() => navigation.goBack()} />
+                    <Ionicons name="chevron-back-sharp" size={25} color="#636b77"
+                        onPress={() => navigation.goBack()} />
                     <View style={styles.informationContainer}>
                         <Image source={{ uri: image.small }} style={styles.imageStyle} />
                         <Text style={styles.symbolTextStyle}>{symbol.toUpperCase()}</Text>
                     </View>
-                    <FontAwesome name={cryptoinWatchlist() ? "star" : "star-o"} size={25} color={cryptoinWatchlist() ? "#ffbf00" : "#636b77"}
-                        onPress={() => checkWatchlistData()} />
+                    <FontAwesome name={cryptoinWatchlist() ? "star" : "star-o"} size={25}
+                        color={cryptoinWatchlist() ? "#ffbf00" : "#636b77"} onPress={() => checkWatchlistData()} />
                 </View>
                 <View style={styles.cryptoInfoContainer}>
                     <View>
                         <View style={styles.titleContainer}>
                             <Text style={styles.titleTextStyle}>{name}</Text>
-                            <View style={[styles.positionContainer, market_cap_rank >= 10 && { width: 26 }, market_cap_rank >= 100 && { width: 36 }]}>
+                            <View style={[styles.positionContainer, market_cap_rank >= 10 &&
+                                { width: 26 }, market_cap_rank >= 100 && { width: 36 }]}>
                                 <Text style={styles.positionTextStyle}>#{market_cap_rank}</Text>
                             </View>
                         </View>
@@ -162,18 +167,23 @@ const CryptoDetailsScreen = ({ route }) => {
                             style={styles.priceTextStyle} />
                     </View>
                     <View style={[styles.percentageContainer, { backgroundColor: pricePercentage }]}>
-                        <AntDesign name={price_change_percentage_24h > 0 ? "caretup" : "caretdown"} color="white" size={12} style={styles.iconContainer} />
-                        <Text style={styles.percentageText}>{price_change_percentage_24h?.toFixed(2)}%</Text>
+                        <AntDesign name={price_change_percentage_24h > 0 ? "caretup" : "caretdown"} color="#ffffff" size={12}
+                            style={styles.iconContainer} />
+                        <Text style={styles.percentageTextStyle}>{price_change_percentage_24h?.toFixed(2)}%</Text>
                     </View>
                 </View>
                 <View style={styles.filterContainer}>
                     {filterValues.map((data, index) => (
-                        <CryptoFilterDetails key={index} day={data.day} value={data.value} selectedText={selectedText} setSelectedText={onChangeValue} />
+                        <CryptoFilterDetails key={index} day={data.day} value={data.value}
+                            selectedText={selectedText} setSelectedText={onChangeValue} />
                     ))}
-                    {!candleChartVisible ? (<MaterialIcons name="waterfall-chart" size={24} color="#26b985" onPress={() => showingCandleStickChart()} />) : (<MaterialIcons name="show-chart" size={24} color="#26b985" onPress={() => showingLineChart()} />)}
+                    {!candleChartVisible ? (<MaterialIcons name="waterfall-chart" size={24} color="#26b985"
+                        onPress={() => showingCandleStickChart()} />) :
+                        (<MaterialIcons name="show-chart" size={24} color="#26b985" onPress={() => showingLineChart()} />)}
                 </View>
                 {candleChartVisible ? (
-                    <CandlestickChart.Provider data={candlechartData.map(([timestamp, open, high, low, close]) => ({ timestamp, open, high, low, close }))}>
+                    <CandlestickChart.Provider data={candlechartData.map(([timestamp, open, high, low, close]) =>
+                        ({ timestamp, open, high, low, close }))}>
                         <CandlestickChart height={SIZE / 1.5} width={SIZE} >
                             <CandlestickChart.Candles />
                             <CandlestickChart.Crosshair>
@@ -182,31 +192,31 @@ const CryptoDetailsScreen = ({ route }) => {
                         </CandlestickChart>
                         <View style={styles.candlechartContainer}>
                             <View>
-                                <Text style={styles.candleText}>Open</Text>
+                                <Text style={styles.candleTextStyle}>Open</Text>
                                 <CandlestickChart.PriceText style={styles.candlechartTextStyle} type="open" />
                             </View>
                             <View>
-                                <Text style={styles.candleText}>High</Text>
-                                <CandlestickChart.PriceText style={styles.candlechartText} type="high" />
+                                <Text style={styles.candleTextStyle}>High</Text>
+                                <CandlestickChart.PriceText style={styles.candlechartTextStyle} type="high" />
                             </View>
                             <View>
-                                <Text style={styles.candleText}>Low</Text>
-                                <CandlestickChart.PriceText style={styles.candlechartText} type="low" />
+                                <Text style={styles.candleTextStyle}>Low</Text>
+                                <CandlestickChart.PriceText style={styles.candlechartTextStyle} type="low" />
                             </View>
                             <View>
                                 <Text style={styles.candleTextStyle}>Close</Text>
-                                <CandlestickChart.PriceText style={styles.candlechartText} type="close" />
+                                <CandlestickChart.PriceText style={styles.candlechartTextStyle} type="close" />
                             </View>
                         </View>
                         <CandlestickChart.DatetimeText style={styles.candleChartDateTimeContainer} />
                         <View style={styles.bottomContainer}>
-                            <TouchableOpacity style={[styles.buttonContainer, { backgroundColor: "#26b985" }]}
-                                onPress={onBuyButtonPressed}>
-                                <Text style={styles.buttonText}>BUY</Text>
+                            <TouchableOpacity onPress={onBuyButtonPressed}
+                                style={[styles.buttonContainer, { backgroundColor: "#26b985" }]} >
+                                <Text style={styles.buttonTextStyle}>BUY</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={[styles.buttonContainer, { backgroundColor: "#c14850" }]}
-                                onPress={onSellButtonPressed}>
-                                <Text style={styles.buttonText}>SELL</Text>
+                            <TouchableOpacity onPress={onSellButtonPressed}
+                                style={[styles.buttonContainer, { backgroundColor: "#c14850" }]} >
+                                <Text style={styles.buttonTextStyle}>SELL</Text>
                             </TouchableOpacity>
                         </View>
                     </CandlestickChart.Provider>
@@ -235,7 +245,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 10,
         paddingTop: 50,
-        backgroundColor: "white"
+        backgroundColor: "#ffffff"
     },
     headerContainer: {
         flexDirection: "row",
@@ -254,7 +264,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
         fontSize: 17,
         fontWeight: "600",
-        color: "black"
+        color: "#000000"
     },
     cryptoInfoContainer: {
         marginTop: 5,
@@ -272,7 +282,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
         fontSize: 15,
         fontWeight: "600",
-        color: "black"
+        color: "#000000"
     },
     positionContainer: {
         width: 22,
@@ -290,7 +300,7 @@ const styles = StyleSheet.create({
     priceTextStyle: {
         fontSize: 28,
         fontWeight: "600",
-        color: "black"
+        color: "#000000"
     },
     percentageContainer: {
         paddingHorizontal: 5,
@@ -303,10 +313,10 @@ const styles = StyleSheet.create({
         marginRight: 5,
         alignSelf: "center"
     },
-    percentageText: {
+    percentageTextStyle: {
         fontSize: 16,
         fontWeight: "bold",
-        color: "white"
+        color: "#ffffff"
     },
     filterContainer: {
         marginBottom: 20,
@@ -329,12 +339,12 @@ const styles = StyleSheet.create({
     },
     candlechartTextStyle: {
         fontWeight: "700",
-        color: "black"
+        color: "#000000"
     },
     candleChartDateTimeContainer: {
         margin: 10,
         fontWeight: "700",
-        color: "black"
+        color: "#000000"
     },
     bottomContainer: {
         marginHorizontal: 36,
@@ -353,14 +363,14 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         borderRadius: 30
     },
-    buttonText: {
+    buttonTextStyle: {
         fontSize: 16,
         fontWeight: "600",
-        color: "white"
+        color: "#ffffff"
     },
     lineChartTextStyle: {
         fontSize: 15,
         fontWeight: "bold",
-        color: "black"
+        color: "#000000"
     }
 });

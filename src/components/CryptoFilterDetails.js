@@ -4,9 +4,12 @@ import { Text, StyleSheet, Pressable } from "react-native";
 const CryptoFilterDetails = (props) => {
     const { day, value, selectedText, setSelectedText } = props;
     return (
-        <Pressable style={[styles.container, selectedText === day && { backgroundColor: "white" }]}
-            onPress={() => setSelectedText(day)}>
-            <Text style={[styles.textStyle, { color: selectedText === day ? "black" : "#636b77" }]}>{value}</Text>
+        <Pressable onPress={() => setSelectedText(day)}
+            style={[styles.container, selectedText === day && { backgroundColor: "#ffffff" }]}>
+            <Text style={[styles.textStyle, {
+                color: selectedText === day ?
+                    "#000000" : "#636b77"
+            }]}>{value}</Text>
         </Pressable>
     );
 }

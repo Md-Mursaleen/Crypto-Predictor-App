@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { View, Text, Pressable, StyleSheet, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import auth from "@react-native-firebase/auth";
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Entypo from "react-native-vector-icons/Entypo";
 
 const ProfileScreen = () => {
     const navigation = useNavigation();
@@ -22,36 +21,62 @@ const ProfileScreen = () => {
     };
     return (
         <View style={styles.container}>
-            <Text style={styles.profileText}>Profile</Text>
-            <Image source={require("../../assets/images/profile-image.jpg")} style={styles.profileImageStyle} />
-            <View style={{ marginTop: 10 }}>
-                <Text style={styles.usernameText}>{signedUser?.user?.displayName}</Text>
-            </View>
-            <View style={styles.middleContainer}>
-                <Text style={styles.assetsText}>Your Assets</Text>
-                <View style={{ marginTop: 20 }}>
-                    <View style={styles.subMiddleContainer}>
-                        <MaterialIcons name="attach-money" size={32} color="black" />
-                        <View style={{ marginLeft: 15 }}>
-                            <Text style={styles.middleContainerText} onPress={() => navigation.navigate("Portfolio")}>Current Assets</Text>
-                            <Text style={styles.middleContainerSubText} onPress={() => navigation.navigate("Asset")}>Add Asset</Text>
-                        </View>
-                    </View>
-                    <View style={styles.borderStyle} />
-                    <View style={styles.middleContainerBottomContainer}>
-                        <FontAwesome5 name="star" size={22} color="black" />
-                        <View style={{ marginLeft: 20 }}>
-                            <Text style={styles.middleContainerText} onPress={() => navigation.navigate("Watchlist")}>Watchlist Assets</Text>
-                            <Text style={styles.middleContainerSubText} onPress={() => navigation.navigate("Markets")} >Add Watchlist</Text>
-                        </View>
-                    </View>
+            <Text style={styles.profileTextStyle}>Profile</Text>
+            <Image source={require("../../assets/images/profile-image.png")}
+                style={styles.profileImageStyle} />
+            <Text style={styles.titleTextStyle}>APP</Text>
+            <View style={styles.itemContainer}>
+                <Text style={styles.itemTextStyle}>Launch Screen</Text>
+                <View style={styles.itemSubContainer}>
+                    <Text style={styles.itemSubTextStyle}>Home</Text>
+                    <Entypo name="chevron-small-right" size={20} color="#5e80fc" />
                 </View>
             </View>
+            <View style={[styles.itemContainer, { marginTop: 25 }]}>
+                <Text style={styles.itemTextStyle}>Appearance</Text>
+                <View style={styles.itemSubContainer}>
+                    <Text style={styles.itemSubTextStyle}>Dark</Text>
+                    <Entypo name="chevron-small-right" size={20} color="#5e80fc" />
+                </View>
+            </View>
+            <Text style={[styles.titleTextStyle, { marginTop: 40 }]}>ACCOUNT</Text>
+            <View style={styles.itemContainer}>
+                <Text style={styles.itemTextStyle}>Payment Currency</Text>
+                <View style={styles.itemSubContainer}>
+                    <Text style={styles.itemSubTextStyle}>USD</Text>
+                    <Entypo name="chevron-small-right" size={20} color="#5e80fc" />
+                </View>
+            </View>
+            <View style={[styles.itemContainer, { marginTop: 25 }]}>
+                <Text style={styles.itemTextStyle}>Language</Text>
+                <View style={styles.itemSubContainer}>
+                    <Text style={styles.itemSubTextStyle}>English</Text>
+                    <Entypo name="chevron-small-right" size={20} color="#5e80fc" />
+                </View>
+            </View>
+            <Text style={[styles.titleTextStyle, { marginTop: 40 }]}>ASSETS</Text>
             <View style={styles.bottomContainer}>
-                <Pressable onPress={() => signOutWithGoogle()}>
-                    <Text style={styles.signOutText}>Sign Out</Text>
+                <Pressable onPress={() => navigation.navigate("Portfolio")}
+                    style={styles.subBottomContainer}>
+                    <Image source={require("../../assets/images/wallet-image.png")}
+                        style={[styles.iconStyle, { marginLeft: 5 }]} />
+                    <Text style={styles.bottomContainerTextStyle}>Current Assets</Text>
+                    <Entypo name="chevron-small-right" size={20} color="#5e80fc"
+                        style={styles.arrowIconStyle} />
+                </Pressable>
+                <Pressable onPress={() => navigation.navigate("Watchlist")}
+                    style={[styles.subBottomContainer, { marginTop: 25 }]}>
+                    <Image source={require("../../assets/images/star-icon.png")}
+                        style={styles.iconStyle} />
+                    <Text style={styles.bottomContainerTextStyle}>Watchlist Assets</Text>
+                    <Entypo name="chevron-small-right" size={20} color="#5e80fc"
+                        style={styles.arrowIconStyle} />
                 </Pressable>
             </View>
+            <Pressable onPress={() => signOutWithGoogle()}
+                style={styles.buttonContainer}>
+                <Text style={styles.signOutTextStyle}>Sign Out</Text>
+            </Pressable>
         </View>
     );
 }
@@ -62,72 +87,87 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 50,
-        backgroundColor: "white"
+        backgroundColor: "#ffffff"
     },
-    profileText: {
+    profileTextStyle: {
         marginLeft: 15,
         fontSize: 29,
         fontWeight: "bold",
-        color: "black"
+        color: "#000000"
     },
     profileImageStyle: {
-        height: 180,
-        width: 180,
+        width: 240,
+        height: 170,
         alignSelf: "center",
         resizeMode: "contain"
     },
-    usernameText: {
-        marginTop: -10,
-        fontSize: 18,
+    titleTextStyle: {
+        marginVertical: 15,
+        marginLeft: 20,
+        fontSize: 13.8,
         fontWeight: "500",
-        color: "#636b77",
-        textAlign: "center"
+        color: "#60687b"
     },
-    middleContainer: {
+    itemContainer: {
         marginLeft: 15,
-        marginTop: 20
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between"
     },
-    assetsText: {
-        marginTop: 20,
-        fontSize: 18.5,
+    itemTextStyle: {
+        marginLeft: 5,
+        fontSize: 15.2,
         fontWeight: "500",
-        color: "black"
+        color: "#000000"
     },
-    subMiddleContainer: {
+    itemSubContainer: {
+        marginRight: 17,
         flexDirection: "row",
         alignItems: "center"
     },
-    middleContainerText: {
+    itemSubTextStyle: {
+        marginRight: 10,
         fontSize: 14.8,
-        fontWeight: "500",
-        color: "black"
-    },
-    middleContainerSubText: {
-        marginTop: 18,
-        fontSize: 13,
         fontWeight: "500",
         color: "grey"
     },
-    borderStyle: {
-        marginTop: 20,
-        marginRight: 15,
-        borderWidth: StyleSheet.hairlineWidth,
-        borderColor: "grey"
+    bottomContainer: {
+        marginLeft: 15,
+        marginTop: 5,
+        marginBottom: 10,
     },
-    middleContainerBottomContainer: {
-        marginLeft: 3,
-        marginTop: 18,
+    subBottomContainer: {
         flexDirection: "row",
         alignItems: "center"
     },
-    bottomContainer: {
-        marginTop: 20,
-        marginLeft: 15
+    iconStyle: {
+        width: 30,
+        height: 30,
+        resizeMode: "contain"
     },
-    signOutText: {
-        marginTop: 25,
-        fontSize: 18.5,
-        fontWeight: "600",
-        color: "#636b77"
+    bottomContainerTextStyle: {
+        marginLeft: 15,
+        fontSize: 15.5,
+        fontWeight: "500",
+        color: "#000000"
+    },
+    arrowIconStyle: {
+        marginLeft: "auto",
+        marginRight: 18
+    },
+    buttonContainer: {
+        padding: 12.5,
+        marginHorizontal: 15,
+        marginTop: "auto",
+        marginBottom: 12,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#c14850",
+        borderRadius: 5
+    },
+    signOutTextStyle: {
+        fontSize: 16,
+        fontWeight: "500",
+        color: "#ffffff"
     }
 });

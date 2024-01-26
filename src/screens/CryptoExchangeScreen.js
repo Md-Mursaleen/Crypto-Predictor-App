@@ -7,7 +7,7 @@ const CoinsExchangeScreen = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const isBuy = route?.params?.isBuy;
-    const { id, name, symbol, image, market_data: { current_price: { usd }, market_cap_rank, price_change_percentage_24h } } = route?.params?.cryptoCoin;
+    const { symbol, image, market_data: { current_price: { usd } } } = route?.params?.cryptoCoin;
     const [coinUSDValue, setCoinUSDValue] = useState("");
     const [coinAmount, setCoinAmount] = useState("");
     useEffect(() => {
@@ -29,19 +29,21 @@ const CoinsExchangeScreen = () => {
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
-                <Ionicons name="chevron-back-sharp" size={25} color="#636b77" onPress={() => navigation.goBack()} style={{ marginLeft: -8 }} />
-                <Text style={styles.headingTextStyle}>Coin Exchange</Text>
+                <Ionicons name="chevron-back-sharp" size={25} color="#636b77" onPress={() => navigation.goBack()}
+                    style={{ marginLeft: -8 }} />
+                <Text style={styles.headerTextStyle}>Coin Exchange</Text>
             </View>
             <View style={styles.informationContainer}>
                 <Image source={{ uri: image.small }} style={styles.coinImageStyle} />
                 <Text style={styles.symbolTextStyle}>{symbol.toUpperCase()}</Text>
             </View>
-            <Text style={styles.subTitleTextStyle}>1{symbol.toUpperCase()}{" = "}{"$"}{usd}</Text>
-            <Image source={require("../../assets/images/order-image.png")} style={styles.imageStyle} />
+            <Text style={[styles.subTitleTextStyle, { color: isBuy ? "#26b985" : "#c14850" }]}
+            >1{symbol.toUpperCase()}{" = "}{"$"}{usd}</Text>
+            <Image source={require("../../assets/images/order-image.jpg")}
+                style={styles.imageStyle} />
             <View style={styles.inputsContainer}>
                 <View style={styles.inputContainer}>
-                    <TextInput
-                        placeholder="0"
+                    <TextInput placeholder="0"
                         placeholderTextColor={"#a7a7a7"}
                         keyboardType="number-pad"
                         value={coinAmount}
@@ -60,7 +62,8 @@ const CoinsExchangeScreen = () => {
                     <Text style={styles.inputTextStyle}>USD</Text>
                 </View>
             </View>
-            <TouchableOpacity style={styles.buttonContainer} onPress={onPressedPlaceOrder}>
+            <TouchableOpacity onPress={onPressedPlaceOrder}
+                style={styles.buttonContainer}>
                 <Text style={styles.buttonText}>Place Order</Text>
             </TouchableOpacity>
         </View>
@@ -72,7 +75,7 @@ export default CoinsExchangeScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "white"
+        backgroundColor: "#ffffff"
     },
     headerContainer: {
         marginTop: 50,
@@ -80,9 +83,9 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center"
     },
-    headingTextStyle: {
+    headerTextStyle: {
         marginLeft: 97,
-        fontSize: 19,
+        fontSize: 20,
         fontWeight: "600"
     },
     informationContainer: {
@@ -99,23 +102,22 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
         fontSize: 18,
         fontWeight: "600",
-        color: "black"
+        color: "#000000"
     },
     subTitleTextStyle: {
         marginTop: 15,
-        fontSize: 15,
+        fontSize: 16,
         fontWeight: "600",
-        color: "grey",
         textAlign: "center"
     },
     imageStyle: {
-        marginTop: 20,
-        height: 180,
-        alignSelf: "center",
-        resizeMode: "contain"
+        marginTop: 10,
+        height: 280,
+        width: 305,
+        alignSelf: "center"
     },
     inputsContainer: {
-        marginTop: 30,
+        marginTop: 10,
         width: "100%",
         flexDirection: "row",
         alignItems: "center",
@@ -135,7 +137,7 @@ const styles = StyleSheet.create({
     textInputStyle: {
         fontSize: 17,
         fontWeight: "500",
-        color: "black"
+        color: "#636b77"
     },
     textStyle: {
         fontSize: 23,
@@ -149,9 +151,9 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         padding: 12,
-        marginTop: "auto",
+        marginTop: 30,
         marginBottom: 30,
-        marginHorizontal: 10,
+        marginHorizontal: 12,
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#5e80fc",
@@ -160,6 +162,6 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: 16,
         fontWeight: "500",
-        color: "white"
+        color: "#ffffff"
     }
 });

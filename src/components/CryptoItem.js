@@ -6,7 +6,8 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 
 const CryptoItem = ({ cryptodata }) => {
     const navigation = useNavigation();
-    const { id, symbol, image, current_price, market_cap_rank, market_cap, price_change_percentage_24h, sparkline_in_7d } = cryptodata;
+    const { id, symbol, image, current_price, market_cap_rank, market_cap,
+        price_change_percentage_24h, sparkline_in_7d } = cryptodata;
     const cryptoMarketCap = (market_cap) => {
         if (market_cap > 1e12) {
             return `${(market_cap / 1e12).toFixed(3)} Tn`;
@@ -24,14 +25,14 @@ const CryptoItem = ({ cryptodata }) => {
     }
     const pricePercentage = price_change_percentage_24h < 0 ? "#c14850" : "#26b985";
     return (
-        <Pressable style={styles.cryptoContainer} onPress={() => navigation.navigate("CryptoDetails", {
+        <Pressable onPress={() => navigation.navigate("CryptoDetails", {
             cryptoid: id
-        })}>
+        })} style={styles.cryptoContainer}>
             <Text style={styles.positionTextStyle}>{market_cap_rank}</Text>
             <Image source={{ uri: image }} style={styles.imageStyle} />
             <View>
-                <Text style={styles.symbolSytle}>{symbol?.toUpperCase()}</Text>
-                <Text style={styles.marketCapStyle}>{cryptoMarketCap(market_cap)}</Text>
+                <Text style={styles.symbolTextSytle}>{symbol?.toUpperCase()}</Text>
+                <Text style={styles.marketCapTextStyle}>{cryptoMarketCap(market_cap)}</Text>
             </View>
             <View style={styles.percentageChangeGraphContainer}>
                 <LineChart withHorizontalLabels={false}
@@ -47,7 +48,7 @@ const CryptoItem = ({ cryptodata }) => {
                             }
                         ]
                     }}
-                    width={85}
+                    width={100}
                     height={48}
                     chartConfig={{
                         backgroundGradientFrom: "#ffffff",
@@ -59,10 +60,13 @@ const CryptoItem = ({ cryptodata }) => {
                 />
             </View>
             <View style={styles.priceValueContainer}>
-                <Text style={styles.priceTextStyle}>{current_price === 1 ? "1.00" : current_price < 1 ? (current_price).toFixed(5) : current_price}</Text>
+                <Text style={styles.priceTextStyle}>{current_price === 1 ? "1.00" :
+                    current_price < 1 ? (current_price).toFixed(5) : current_price}$</Text>
                 <View style={[styles.pricePercentageContainer,]}>
-                    <AntDesign name={price_change_percentage_24h > 0 ? "caretup" : "caretdown"} color={pricePercentage} size={10} style={styles.iconStyle} />
-                    <Text style={[styles.priceChangeTextStyle, { color: pricePercentage }]}>{price_change_percentage_24h?.toFixed(2)}%</Text>
+                    <AntDesign name={price_change_percentage_24h > 0 ? "caretup" : "caretdown"}
+                        color={pricePercentage} size={10} style={styles.iconStyle} />
+                    <Text style={[styles.priceChangeTextStyle, { color: pricePercentage }]}>
+                        {price_change_percentage_24h?.toFixed(2)}%</Text>
                 </View>
             </View>
         </Pressable>
@@ -76,40 +80,40 @@ const styles = StyleSheet.create({
         padding: 13,
         flexDirection: "row",
         alignItems: "center",
+        justifyContent: "center",
         borderBottomWidth: StyleSheet.hairlineWidth,
-        borderBottomColor: "white"
+        borderBottomColor: "#ffffff"
     },
     positionTextStyle: {
-        marginLeft: 1,
+        marginLeft: 7,
         fontSize: 14.5,
         fontWeight: "500",
         color: "#7a7f8a"
     },
     imageStyle: {
-        marginLeft: 30,
+        marginLeft: 26,
         marginRight: 10,
-        height: 27,
-        width: 27
+        height: 28,
+        width: 28
     },
-    symbolSytle: {
+    symbolTextSytle: {
         marginRight: 5,
         fontWeight: "bold",
-        color: "black"
+        color: "#000000"
     },
-    marketCapStyle: {
+    marketCapTextStyle: {
         marginTop: 2,
         fontSize: 13,
         fontWeight: "500",
         color: "#656e78"
     },
     percentageChangeGraphContainer: {
-        marginRight: -15,
         marginLeft: "auto",
         flexDirection: "row",
         alignItems: "center"
     },
     priceValueContainer: {
-        paddingLeft: 15,
+        marginRight: 4,
         marginLeft: "auto",
         flexDirection: "column",
         alignItems: "center"
@@ -119,10 +123,9 @@ const styles = StyleSheet.create({
         marginBottom: 2,
         fontSize: 14.5,
         fontWeight: "500",
-        color: "black"
+        color: "#000000"
     },
     pricePercentageContainer: {
-        marginRight: -2,
         width: 65,
         height: 26,
         flexDirection: "row",

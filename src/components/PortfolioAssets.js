@@ -15,15 +15,18 @@ const PortfolioAssets = () => {
     const assets = useRecoilValue(portfolioassets);
     const [storedAssets, setStoredAssets] = useRecoilState(portfolioassetsinstore);
     const navigation = useNavigation();
-    const currentBalance = () => assets.reduce((total, currentAsset) => total + (currentAsset.current_price * currentAsset.quantity), 0);
+    const currentBalance = () => assets.reduce((total, currentAsset) => total +
+        (currentAsset.current_price * currentAsset.quantity), 0);
     const currentValue = () => {
         const currentbalance = currentBalance();
-        const boughtValue = assets.reduce((total, currentAsset) => total + (currentAsset.price * currentAsset.quantity), 0);
+        const boughtValue = assets.reduce((total, currentAsset) => total +
+            (currentAsset.price * currentAsset.quantity), 0);
         return (currentbalance - boughtValue).toFixed(2);
     };
     const currentpercentage = () => {
         const currentbalance = currentBalance();
-        const boughtValue = assets.reduce((total, currentAsset) => total + (currentAsset.price * currentAsset.quantity), 0);
+        const boughtValue = assets.reduce((total, currentAsset) => total +
+            (currentAsset.price * currentAsset.quantity), 0);
         return ((currentbalance - boughtValue) / boughtValue * 100 || 0).toFixed(2);
     };
     const deletingAsset = async (asset) => {
@@ -34,9 +37,8 @@ const PortfolioAssets = () => {
     };
     const deletebutton = (data) => {
         return (
-            <Pressable style={styles.deleteButtonContainer}
-                onPress={() => deletingAsset(data)}>
-                <FontAwesome name="trash-o" size={24} color="white" />
+            <Pressable style={styles.deleteButtonContainer} onPress={() => deletingAsset(data)}>
+                <FontAwesome name="trash-o" size={24} color="#ffffff" />
             </Pressable>
         );
     };
@@ -50,13 +52,14 @@ const PortfolioAssets = () => {
                     loop={true}
                     style={styles.lottieStyle} />
                 <View>
-                    <Text style={styles.headerTitle}>Your portfolio is empty</Text>
-                    <Text style={[styles.headerSubTitle, { marginTop: 20 }]}>Add the first asset by tapping on the</Text>
-                    <Text style={[styles.headerSubTitle, { marginTop: 5 }]}>button below.</Text>
+                    <Text style={styles.headerTitleTextStyle}>Your portfolio is empty</Text>
+                    <Text style={[styles.headerSubTitleTextStyle, { marginTop: 20 }]}>
+                        Add the first asset by tapping on the</Text>
+                    <Text style={[styles.headerSubTitleTextStyle, { marginTop: 5 }]}>button below.</Text>
                 </View>
-                < Pressable style={[styles.buttonContainer, assets.length === 0 && { marginTop: 180 }]}
-                    onPress={() => navigation.navigate("Asset")}>
-                    <Text style={styles.buttonText}>Add New Asset</Text>
+                <Pressable onPress={() => navigation.navigate("Asset")}
+                    style={[styles.buttonContainer, assets.length === 0 && { marginTop: 180 }]}>
+                    <Text style={styles.buttonTextStyle}>Add New Asset</Text>
                 </Pressable >
             </>
         ) : (
@@ -71,16 +74,20 @@ const PortfolioAssets = () => {
                         <Text style={styles.textStyle}>Portfolio</Text>
                         <View style={styles.balanceContainer}>
                             <View>
-                                <Text style={styles.balanceText}>Current Balance</Text>
-                                <Text style={styles.balanceValueText}>${currentBalance()?.toFixed(2)}</Text>
-                                <Text style={[styles.changePriceText, { color: currentValue() >= 0 ? "#16c784" : "#ea3943" }]}>${currentValue()} (24h)</Text>
+                                <Text style={styles.balanceTextStyle}>Current Balance</Text>
+                                <Text style={styles.balanceValueTextStyle}>${currentBalance()?.toFixed(2)}</Text>
+                                <Text style={[styles.changePriceTextStyle,
+                                { color: currentValue() >= 0 ? "#16c784" : "#ea3943" }]}>
+                                    ${currentValue()} (24h)</Text>
                             </View>
-                            <View style={[styles.percentageChangeContainer, { backgroundColor: currentValue() >= 0 ? "#16c784" : "#ea3943" }]}>
-                                <AntDesign name={currentValue() >= 0 ? "caretup" : "caretdown"} color="white" style={styles.iconStyle} />
-                                <Text style={styles.percentageChangeText}>{currentpercentage()}%</Text>
+                            <View style={[styles.percentageChangeContainer,
+                            { backgroundColor: currentValue() >= 0 ? "#16c784" : "#ea3943" }]}>
+                                <AntDesign name={currentValue() >= 0 ? "caretup" : "caretdown"} color="#ffffff"
+                                    style={styles.iconStyle} />
+                                <Text style={styles.percentageChangeTextStyle}>{currentpercentage()}%</Text>
                             </View>
                         </View>
-                        <Text style={styles.assetsText}>Your Assets</Text>
+                        <Text style={styles.assetsTextStyle}>Your Assets</Text>
                         <View style={styles.headerContainer}>
                             <Text style={[styles.headerTextStyle, { fontSize: 14 }]}>Asset</Text>
                             <Text style={[styles.headerTextStyle, { marginLeft: 35 }]}>24H Price</Text>
@@ -92,9 +99,9 @@ const PortfolioAssets = () => {
                     </>
                 }
                 ListFooterComponent={
-                    < Pressable style={styles.buttonContainer}
-                        onPress={() => navigation.navigate("Asset")}>
-                        <Text style={styles.buttonText}>Add New Asset</Text>
+                    <Pressable onPress={() => navigation.navigate("Asset")}
+                        style={styles.buttonContainer}>
+                        <Text style={styles.buttonTextStyle}>Add New Asset</Text>
                     </Pressable >
                 } />
         )
@@ -108,21 +115,21 @@ const styles = StyleSheet.create({
         marginLeft: 15,
         fontSize: 25.5,
         fontWeight: "bold",
-        color: "black"
+        color: "#000000"
     },
     lottieStyle: {
         marginTop: 60,
         height: 185,
         alignSelf: "center"
     },
-    headerTitle: {
+    headerTitleTextStyle: {
         marginTop: 80,
         fontSize: 27,
         fontWeight: "bold",
         alignSelf: "center",
-        color: "black"
+        color: "#000000"
     },
-    headerSubTitle: {
+    headerSubTitleTextStyle: {
         fontSize: 16.5,
         fontWeight: "500",
         alignSelf: "center",
@@ -136,10 +143,10 @@ const styles = StyleSheet.create({
         backgroundColor: "#4169e1",
         borderRadius: 5
     },
-    buttonText: {
+    buttonTextStyle: {
         fontSize: 16,
         fontWeight: "600",
-        color: "white"
+        color: "#ffffff"
     },
     balanceContainer: {
         marginTop: 15,
@@ -149,20 +156,22 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between"
     },
-    balanceText: {
+    balanceTextStyle: {
         marginLeft: 4,
         fontSize: 16,
         fontWeight: "600",
         color: "grey"
     },
-    balanceValueText: {
+    balanceValueTextStyle: {
         marginTop: 5,
+        marginLeft: 3.5,
         fontSize: 28.5,
         fontWeight: "700",
-        color: "black"
+        color: "#000000"
     },
-    changePriceText: {
+    changePriceTextStyle: {
         marginTop: 3,
+        marginLeft: 5,
         fontSize: 14.5,
         fontWeight: "700"
     },
@@ -177,17 +186,17 @@ const styles = StyleSheet.create({
         marginRight: 5,
         alignSelf: "center"
     },
-    percentageChangeText: {
+    percentageChangeTextStyle: {
         fontSize: 17,
         fontWeight: "600",
-        color: "white"
+        color: "#ffffff"
     },
-    assetsText: {
+    assetsTextStyle: {
         paddingHorizontal: 10,
         paddingVertical: 20,
         fontSize: 18,
         fontWeight: "700",
-        color: "black"
+        color: "#000000"
     },
     headerContainer: {
         marginBottom: 10,

@@ -62,8 +62,9 @@ const AddAssetScreen = () => {
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
-                <Ionicons name="chevron-back-sharp" size={25} color="#636b77" onPress={() => navigation.goBack()} style={{ marginLeft: 10 }} />
-                <Text style={styles.headerText}>Add New Asset</Text>
+                <Ionicons name="chevron-back-sharp" size={25} color="#636b77" onPress={() => navigation.goBack()}
+                    style={{ marginLeft: 10 }} />
+                <Text style={styles.headerTextStyle}>Add New Asset</Text>
             </View>
             <SearchableDropdown containerStyle={styles.dropdownContainer}
                 itemStyle={styles.dropdownitemContainer}
@@ -72,7 +73,7 @@ const AddAssetScreen = () => {
                 onItemSelect={(item) => setSelectedCoin(item.id)}
                 resetValue={false}
                 placeholder={selectedCoin || "Select a crypto coin"}
-                placeholderTextColor="grey"
+                placeholderTextColor="#636b77"
                 textInputProps={{
                     underlineColorAndroid: "transparent",
                     style: styles.textInputPropsStyle
@@ -85,13 +86,15 @@ const AddAssetScreen = () => {
                                 keyboardType="numeric"
                                 style={styles.textInputStyle}
                                 onChangeText={setAssetQuantity} />
-                            <Text style={styles.symbolTextStyle}>{selectedCoinData?.symbol.toUpperCase()}</Text>
+                            <Text style={[styles.symbolTextStyle, { color: assetQuantity === "" ? "#000000" : "#636b77" }]}>
+                                {selectedCoinData?.symbol.toUpperCase()}</Text>
                         </View>
-                        <Text style={styles.priceTextStyle}>{selectedCoinData?.market_data?.current_price?.usd} per coin</Text>
+                        <Text style={[styles.priceTextStyle, { color: assetQuantity === "" ? "#000000" : "#636b77" }]}>
+                            {selectedCoinData?.market_data?.current_price?.usd} per coin</Text>
                     </View>
-                    <Pressable style={[styles.buttonContainer, { backgroundColor: assetQuantity === "" ? "#cdcdcd" : "#4169e1" }]}
-                        onPress={addnewAsset} disabled={assetQuantity === ""} >
-                        <Text style={styles.buttonText}>Add New Asset</Text>
+                    <Pressable onPress={addnewAsset} disabled={assetQuantity === ""}
+                        style={[styles.buttonContainer, { backgroundColor: assetQuantity === "" ? "#cdcdcd" : "#4169e1" }]} >
+                        <Text style={styles.buttonTextStyle}>Add New Asset</Text>
                     </Pressable>
                 </>
             )}
@@ -105,13 +108,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 50,
-        backgroundColor: "white"
+        backgroundColor: "#ffffff"
     },
     headerContainer: {
         flexDirection: "row",
         alignItems: "center"
     },
-    headerText: {
+    headerTextStyle: {
         marginLeft: "28%",
         fontSize: 16.5,
         fontWeight: "600",
@@ -122,7 +125,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 20,
         width: "100%",
-        backgroundColor: "white"
+        backgroundColor: "#ffffff"
     },
     dropdownitemContainer: {
         padding: 16,
@@ -135,6 +138,8 @@ const styles = StyleSheet.create({
     textInputPropsStyle: {
         padding: 12,
         backgroundColor: "#f4f4f4",
+        fontSize: 14.8,
+        fontWeight: "500",
         color: "grey",
         borderWidth: 1.5,
         borderColor: "grey",
@@ -147,19 +152,17 @@ const styles = StyleSheet.create({
     },
     textInputStyle: {
         fontSize: 70,
-        color: "black"
+        color: "#000000"
     },
     symbolTextStyle: {
         marginTop: 15,
         marginLeft: 5,
         fontSize: 20,
-        fontWeight: "700",
-        color: "black"
+        fontWeight: "700"
     },
     priceTextStyle: {
         fontSize: 17,
-        fontWeight: "600",
-        color: "black"
+        fontWeight: "600"
     },
     buttonContainer: {
         padding: 10,
@@ -168,9 +171,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         borderRadius: 5
     },
-    buttonText: {
+    buttonTextStyle: {
         fontSize: 17,
         fontWeight: "600",
-        color: "white"
+        color: "#ffffff"
     }
 });

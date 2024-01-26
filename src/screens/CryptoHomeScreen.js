@@ -40,15 +40,18 @@ const CryptoHomeScreen = () => {
                 </View>
                 <View style={styles.subHeaderItemContainer}>
                     <Text style={styles.subHeaderTextStyle}>Market Cap</Text>
-                    <AntDesign name="caretdown" color="#5e80fc" size={12} style={{ marginRight: 20 }} />
+                    <AntDesign name="caretdown" color="#5e80fc" size={12}
+                        style={{ marginRight: 20 }} />
                 </View>
-                <View style={[styles.subHeaderItemContainer, { marginLeft: 10 }]}>
+                <View style={[styles.subHeaderItemContainer, { marginLeft: 15 }]}>
                     <Text style={styles.subHeaderTextStyle}>24h%</Text>
-                    <AntDesign name="caretdown" color="#5e80fc" size={12} style={{ marginRight: 10 }} />
+                    <AntDesign name="caretdown" color="#5e80fc" size={12}
+                        style={{ marginRight: 10 }} />
                 </View>
                 <View style={[styles.subHeaderItemContainer, { marginRight: -15 }]}>
                     <Text style={styles.subHeaderTextStyle}>Price(USD)</Text>
-                    <AntDesign name="caretdown" color="#5e80fc" size={12} style={{ marginRight: 8 }} />
+                    <AntDesign name="caretdown" color="#5e80fc" size={12}
+                        style={{ marginRight: 6 }} />
                 </View>
             </View>
             <FlatList data={cryptoCoin}
@@ -56,11 +59,10 @@ const CryptoHomeScreen = () => {
                     <CryptoItem cryptodata={item} />
                 )}
                 refreshControl={
-                    <RefreshControl refreshing={loading} tintColor="black"
+                    <RefreshControl refreshing={loading} tintColor="#000000"
                         onRefresh={refetchCryptoCoin} />
                 }
-                style={{ marginTop: 8 }}
-            />
+                style={{ marginTop: 8 }} />
         </View>
     );
 }
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 50,
-        backgroundColor: "white"
+        backgroundColor: "#ffffff"
     },
     headerContainer: {
         paddingHorizontal: 10,
@@ -84,7 +86,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         fontSize: 23,
         fontWeight: "bold",
-        color: "black"
+        color: "#000000"
     },
     subHeaderContainer: {
         marginTop: 13,

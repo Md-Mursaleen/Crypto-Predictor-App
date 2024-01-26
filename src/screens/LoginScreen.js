@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import auth from "@react-native-firebase/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import LottieView from "lottie-react-native";
 
 const LoginScreen = () => {
     const navigation = useNavigation();
@@ -24,7 +25,7 @@ const LoginScreen = () => {
     }, []);
     useEffect(() => {
         if (user) {
-            navigation.navigate("Welcome");
+            navigation.navigate("BottomTab");
         }
     }, [user]);
     const signInWithGoogle = async () => {
@@ -44,13 +45,18 @@ const LoginScreen = () => {
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
-                <Image source={require("../../assets/images/icon-image.png")} style={styles.logoImageStyle} />
+                <Image source={require("../../assets/images/icon-image.png")}
+                    style={styles.logoImageStyle} />
             </View>
             <Text style={styles.titleTextStyle}>Easily track your</Text>
             <Text style={styles.subTitleTextStyle}>crypto</Text>
             <Text style={styles.textStyle}>Trusted by over 1 million users</Text>
-            <Image source={require("../../assets/images/login-image.jpg")} style={styles.imageStyle} />
-            <TouchableOpacity style={styles.buttonContainer} onPress={() => signInWithGoogle()}>
+            <LottieView source={require("../../assets/animations/login-animation.json")}
+                autoPlay={true}
+                loop={true}
+                style={styles.lottieAnimationStyle} />
+            <TouchableOpacity onPress={() => signInWithGoogle()}
+                style={styles.buttonContainer}>
                 <Text style={styles.buttonTextStyle}>Sign in with Google</Text>
             </TouchableOpacity>
         </View>
@@ -62,7 +68,7 @@ export default LoginScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "white"
+        backgroundColor: "#ffffff"
     },
     headerContainer: {
         marginTop: 70,
@@ -81,7 +87,7 @@ const styles = StyleSheet.create({
         marginLeft: 30,
         fontSize: 38,
         fontWeight: "bold",
-        color: "black"
+        color: "#000000"
     },
     subTitleTextStyle: {
         marginTop: -8,
@@ -103,10 +109,18 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         resizeMode: "contain"
     },
+    lottieAnimationStyle: {
+        flex: 1,
+        marginTop: "23%",
+        alignSelf: "center",
+        resizeMode: "contain",
+        overflow: "hidden"
+    },
     buttonContainer: {
-        padding: 12,
-        marginTop: 50,
+        padding: 12.5,
         marginHorizontal: 10,
+        marginTop: "auto",
+        marginBottom: 26,
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#0088f9",
@@ -115,6 +129,6 @@ const styles = StyleSheet.create({
     buttonTextStyle: {
         fontSize: 16,
         fontWeight: "500",
-        color: "white"
+        color: "#ffffff"
     }
 });
