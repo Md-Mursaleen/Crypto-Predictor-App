@@ -62,18 +62,18 @@ const AddAssetScreen = () => {
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
-                <Ionicons name="chevron-back-sharp" size={25} color="#636b77" onPress={() => navigation.goBack()}
+                <Ionicons name="chevron-back-sharp" size={25} color="#d6d6d8" onPress={() => navigation.goBack()}
                     style={{ marginLeft: 10 }} />
                 <Text style={styles.headerTextStyle}>Add New Asset</Text>
             </View>
             <SearchableDropdown containerStyle={styles.dropdownContainer}
                 itemStyle={styles.dropdownitemContainer}
-                itemTextStyle={{ color: "grey" }}
+                itemTextStyle={{ color: "#262626" }}
                 items={coins}
                 onItemSelect={(item) => setSelectedCoin(item.id)}
                 resetValue={false}
                 placeholder={selectedCoin || "Select a crypto coin"}
-                placeholderTextColor="#636b77"
+                placeholderTextColor="#262626"
                 textInputProps={{
                     underlineColorAndroid: "transparent",
                     style: styles.textInputPropsStyle
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 50,
-        backgroundColor: "#ffffff"
+        backgroundColor: "#141323"
     },
     headerContainer: {
         flexDirection: "row",
@@ -118,31 +118,31 @@ const styles = StyleSheet.create({
         marginLeft: "28%",
         fontSize: 16.5,
         fontWeight: "600",
-        color: "#636b77"
+        color: "#d6d6d8"
     },
     dropdownContainer: {
         flex: 1,
         paddingHorizontal: 10,
         paddingVertical: 20,
         width: "100%",
-        backgroundColor: "#ffffff"
+        backgroundColor: "#141323"
     },
     dropdownitemContainer: {
         padding: 16,
         marginTop: 10,
-        backgroundColor: "#f4f4f4",
+        backgroundColor: "#d6d6d8",
         borderWidth: StyleSheet.hairlineWidth,
-        borderColor: "grey",
+        borderColor: "#ffffff",
         borderRadius: 5
     },
     textInputPropsStyle: {
         padding: 12,
-        backgroundColor: "#f4f4f4",
+        backgroundColor: "#d6d6d8",
         fontSize: 14.8,
         fontWeight: "500",
-        color: "grey",
+        color: "#262626",
         borderWidth: 1.5,
-        borderColor: "grey",
+        borderColor: "#ffffff",
         borderRadius: 5
     },
     quantityContainer: {

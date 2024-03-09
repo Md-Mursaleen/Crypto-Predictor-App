@@ -1,49 +1,49 @@
 {
   "project_info": {
-    "project_number": "1017811191585",
-    "project_id": "crypto-tracker-app-4dc8d",
-    "storage_bucket": "crypto-tracker-app-4dc8d.appspot.com"
+    "project_number": "499413695630",
+    "project_id": "crypto-app-eee84",
+    "storage_bucket": "crypto-app-eee84.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1017811191585:android:7bf97fe5bd3e30864f6060",
+        "mobilesdk_app_id": "1:499413695630:android:3db70e06bc8966fa525ddf",
         "android_client_info": {
           "package_name": "com.cointracking.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1017811191585-30acurgq69glk0s0gjqpsjgakdmuchfq.apps.googleusercontent.com",
+          "client_id": "499413695630-d5ercv5psvuffjrlr81em2tmerio0qlo.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.cointracking.app",
-            "certificate_hash": "a34296ff55a56c90e244c3cfcc67bfd274592ef7"
+            "certificate_hash": "28d80398b97b8df7fc27840c29af819de55fd443"
           }
         },
         {
-          "client_id": "1017811191585-gvcom681etcsmceeu5m04940tro16sn0.apps.googleusercontent.com",
+          "client_id": "499413695630-nfou5e2aof4lo8c2b2hek4nuub900ahq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.cointracking.app",
-            "certificate_hash": "ec0044b436ace6dba313d65e4fe7afbaab8162e1"
+            "certificate_hash": "41da4fec81cc87fe1dde88d7ba090208b23ed730"
           }
         },
         {
-          "client_id": "1017811191585-sncskt58kev837t6f4a18kl03gcm1dao.apps.googleusercontent.com",
+          "client_id": "499413695630-bsn4reg66do598havcfjc12blu8uv2tj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB3-5VWwpQjS5xnkJ5cV17ahuJSil0NspA"
+          "current_key": "AIzaSyBB1ZQ8YFUSbyBRsCFYCVwf3UxEl1JwjNY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1017811191585-sncskt58kev837t6f4a18kl03gcm1dao.apps.googleusercontent.com",
+              "client_id": "499413695630-bsn4reg66do598havcfjc12blu8uv2tj.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

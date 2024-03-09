@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import {
     View, Text, Image, StyleSheet, Dimensions,
-    ActivityIndicator, Keyboard, TouchableOpacity
+    ActivityIndicator, Keyboard, TouchableOpacity, Linking, Pressable
 } from "react-native";
 import { LineChart } from "react-native-wagmi-charts";
 import { CandlestickChart } from "react-native-wagmi-charts";
 import { useNavigation } from "@react-navigation/native";
 import { getCryptoData, getChartData, getCandleChartData } from "../service/requests";
 import { useWatchlist } from "../../src/contexts/WatchlistContext";
+import { normalize } from "../components/theme";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -29,6 +30,7 @@ const CryptoDetailsScreen = ({ route }) => {
     const [selectedText, setSelectedText] = useState("7");
     const [candleChartVisible, setCandleChartVisible] = useState(true);
     const [keyboardOpen, setKeyboardOpen] = useState(false);
+
     const fetchData = async () => {
         setLoading(true);
         const fetchedData = await getCryptoData(cryptoid);
@@ -36,26 +38,34 @@ const CryptoDetailsScreen = ({ route }) => {
         setUsdValue(fetchedData?.market_data?.current_price?.usd.toString());
         setLoading(false);
     };
+
     const fetchChartData = async (selectedText) => {
         const fetchedChartData = await getChartData(cryptoid, selectedText);
         setChartData(fetchedChartData);
     };
+
     const fetchCandleChartData = async (selectedText) => {
         const fetchedCandleChartData = await getCandleChartData(selectedText, cryptoid);
         setCandlechartData(fetchedCandleChartData);
     };
+
     useEffect(() => {
         fetchData();
         fetchChartData(7);
         fetchCandleChartData(7);
     }, []);
+
     if (loading || !cryptoCoin || !chartData || !candlechartData) {
         return <ActivityIndicator size="large" />
     }
+
     const { id, name, symbol, image, market_data:
         { current_price: { usd }, market_cap_rank, price_change_percentage_24h } } = cryptoCoin;
+
     const { prices } = chartData;
-    const pricePercentage = price_change_percentage_24h < 0 ? "#c14850" : "#26b985";
+
+    const pricePercentage = price_change_percentage_24h < 0 ? "#d0585c" : "#6ac77e";
+
     const formatPrice = ({ value }) => {
         "worklet";
         if (value === "") {
@@ -69,42 +79,46 @@ const CryptoDetailsScreen = ({ route }) => {
         }
         return `$${parseFloat(value).toFixed(2)}`;
     };
+
     const changingCryptoValue = (value) => {
         setCryptoValue(value);
         const cryptoAmount = parseFloat(value.replace(",", ".")) || 0;
         setUsdValue((cryptoAmount * usd).toString());
     };
+
     const changingUsdValue = (value) => {
         setUsdValue(value);
         const usdAmount = parseFloat(value.replace(",", ".")) || 0;
         setCryptoValue((usdAmount / usd).toFixed(3).toString());
     };
+
     const cryptoinWatchlist = () =>
         cryptoId.some((cryptoIdValue) => cryptoIdValue === id);
+
     const checkWatchlistData = () => {
         if (cryptoinWatchlist()) {
             return removeWatchlistData(id);
         }
         return storeWatchlistData(id);
     };
+
     const onChangeValue = (value) => {
         setSelectedText(value);
         fetchChartData(value);
         fetchCandleChartData(value);
     };
+
     const showingLineChart = () => {
         setCandleChartVisible(false)
         setShowingCandleChart(false);
     };
+
     const showingCandleStickChart = () => {
         setCandleChartVisible(true)
         setShowingCandleChart(true);
     };
+
     const filterValues = [
-        // {
-        //     day: "1",
-        //     value: "24h"
-        // },
         {
             day: "7",
             value: "7d"
@@ -122,24 +136,39 @@ const CryptoDetailsScreen = ({ route }) => {
             value: "All"
         }
     ];
+
     const keyboardShowListener = Keyboard.addListener(
         "keyboardDidShow",
         () => {
             setKeyboardOpen(true);
         }
     );
+
     const keyboardHideListener = Keyboard.addListener(
         "keyboardDidHide",
         () => {
             setKeyboardOpen(false);
         }
     );
+
     const onBuyButtonPressed = () => {
         navigation.navigate("CryptoExchange", { isBuy: true, cryptoCoin: cryptoCoin });
     };
+
     const onSellButtonPressed = () => {
         navigation.navigate("CryptoExchange", { isBuy: false, cryptoCoin: cryptoCoin });
     };
+
+    const coinNameInLowerCase = name.toLowerCase();
+
+    const WEB_PAGE_URL = `https://www.coingecko.com/en/coins/${coinNameInLowerCase}`;
+
+    const openLinkInBrowserHandler = () => {
+        Linking.canOpenURL(WEB_PAGE_URL).then((supported) => {
+            supported && Linking.openURL(WEB_PAGE_URL);
+        });
+    };
+
     return (
         <View style={styles.container}>
             <LineChart.Provider data={prices.map(([timestamp, value]) => ({ timestamp, value }))}>
@@ -158,7 +187,7 @@ const CryptoDetailsScreen = ({ route }) => {
                         <View style={styles.titleContainer}>
                             <Text style={styles.titleTextStyle}>{name}</Text>
                             <View style={[styles.positionContainer, market_cap_rank >= 10 &&
-                                { width: 26 }, market_cap_rank >= 100 && { width: 36 }]}>
+                                { width: normalize(26) }, market_cap_rank >= 100 && { width: normalize(36) }]}>
                                 <Text style={styles.positionTextStyle}>#{market_cap_rank}</Text>
                             </View>
                         </View>
@@ -177,9 +206,9 @@ const CryptoDetailsScreen = ({ route }) => {
                         <CryptoFilterDetails key={index} day={data.day} value={data.value}
                             selectedText={selectedText} setSelectedText={onChangeValue} />
                     ))}
-                    {!candleChartVisible ? (<MaterialIcons name="waterfall-chart" size={24} color="#26b985"
+                    {!candleChartVisible ? (<MaterialIcons name="waterfall-chart" size={24} color="#6ac77e"
                         onPress={() => showingCandleStickChart()} />) :
-                        (<MaterialIcons name="show-chart" size={24} color="#26b985" onPress={() => showingLineChart()} />)}
+                        (<MaterialIcons name="show-chart" size={24} color="#6ac77e" onPress={() => showingLineChart()} />)}
                 </View>
                 {candleChartVisible ? (
                     <CandlestickChart.Provider data={candlechartData.map(([timestamp, open, high, low, close]) =>
@@ -211,21 +240,21 @@ const CryptoDetailsScreen = ({ route }) => {
                         <CandlestickChart.DatetimeText style={styles.candleChartDateTimeContainer} />
                         <View style={styles.bottomContainer}>
                             <TouchableOpacity onPress={onBuyButtonPressed}
-                                style={[styles.buttonContainer, { backgroundColor: "#26b985" }]} >
+                                style={[styles.buttonContainer, { backgroundColor: "#6ac77e" }]} >
                                 <Text style={styles.buttonTextStyle}>BUY</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={onSellButtonPressed}
-                                style={[styles.buttonContainer, { backgroundColor: "#c14850" }]} >
+                                style={[styles.buttonContainer, { backgroundColor: "#d0585c" }]} >
                                 <Text style={styles.buttonTextStyle}>SELL</Text>
                             </TouchableOpacity>
                         </View>
                     </CandlestickChart.Provider>
                 ) : (
                     <LineChart height={SIZE / 2} width={SIZE}>
-                        <LineChart.Path color={usd > prices[0][1] ? "#26b985" : "#c14850"}>
-                            <LineChart.Gradient color={usd > prices[0][1] ? "#26b985" : "#c14850"} />
+                        <LineChart.Path color={usd > prices[0][1] ? "#6ac77e" : "#d0585c"}>
+                            <LineChart.Gradient color={usd > prices[0][1] ? "#6ac77e" : "#d0585c"} />
                         </LineChart.Path>
-                        <LineChart.CursorCrosshair color={usd > prices[0][1] ? "#26b985" : "#c14850"} >
+                        <LineChart.CursorCrosshair color={usd > prices[0][1] ? "#6ac77e" : "#d0585c"} >
                             <LineChart.Tooltip textStyle={styles.lineChartTextStyle} />
                             <LineChart.Tooltip position="bottom" >
                                 <LineChart.DatetimeText style={styles.lineChartTextStyle} />
@@ -243,9 +272,9 @@ export default CryptoDetailsScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingHorizontal: 10,
-        paddingTop: 50,
-        backgroundColor: "#ffffff"
+        paddingHorizontal: normalize(10),
+        paddingTop: normalize(50),
+        backgroundColor: "#141323"
     },
     headerContainer: {
         flexDirection: "row",
@@ -257,19 +286,19 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     imageStyle: {
-        width: 25,
-        height: 25
+        width: normalize(25),
+        height: normalize(25)
     },
     symbolTextStyle: {
-        marginHorizontal: 5,
+        marginHorizontal: normalize(5),
         fontSize: 17,
         fontWeight: "600",
-        color: "#000000"
+        color: "#d6d6d8"
     },
     cryptoInfoContainer: {
-        marginTop: 5,
-        paddingVertical: 15,
-        marginHorizontal: 8,
+        marginTop: normalize(5),
+        paddingVertical: normalize(15),
+        marginHorizontal: normalize(8),
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between"
@@ -279,14 +308,14 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     titleTextStyle: {
-        marginRight: 10,
+        marginRight: normalize(10),
         fontSize: 15,
         fontWeight: "600",
-        color: "#000000"
+        color: "#ffffff"
     },
     positionContainer: {
-        width: 22,
-        height: 20,
+        width: normalize(22),
+        height: normalize(20),
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#f4f4f4",
@@ -300,17 +329,17 @@ const styles = StyleSheet.create({
     priceTextStyle: {
         fontSize: 28,
         fontWeight: "600",
-        color: "#000000"
+        color: "#d6d6d8"
     },
     percentageContainer: {
-        paddingHorizontal: 5,
-        paddingVertical: 8,
+        paddingHorizontal: normalize(5),
+        paddingVertical: normalize(8),
         flexDirection: "row",
         alignItems: "center",
         borderRadius: 10
     },
     iconContainer: {
-        marginRight: 5,
+        marginRight: normalize(5),
         alignSelf: "center"
     },
     percentageTextStyle: {
@@ -319,45 +348,46 @@ const styles = StyleSheet.create({
         color: "#ffffff"
     },
     filterContainer: {
-        marginBottom: 20,
-        marginVertical: 10,
-        paddingVertical: 5,
+        marginBottom: normalize(20),
+        marginVertical: normalize(10),
+        paddingVertical: normalize(5),
         flexDirection: "row",
         justifyContent: "space-around",
-        backgroundColor: "#f4f4f4",
+        backgroundColor: "#141323",
         borderRadius: 5
     },
     candlechartContainer: {
-        marginTop: 30,
-        marginHorizontal: 10,
+        marginTop: normalize(30),
+        marginHorizontal: normalize(10),
         flexDirection: "row",
         justifyContent: "space-between"
     },
     candleTextStyle: {
         fontSize: 13,
-        color: "#636b77"
+        fontWeight:"500",
+        color: "#7c7b7e"
     },
     candlechartTextStyle: {
         fontWeight: "700",
-        color: "#000000"
+        color: "#d6d6d8"
     },
     candleChartDateTimeContainer: {
-        margin: 10,
+        margin: normalize(10),
         fontWeight: "700",
-        color: "#000000"
+        color: "#d6d6d8"
     },
     bottomContainer: {
         marginHorizontal: 36,
-        marginTop: 50,
-        marginBottom: 15,
-        marginLeft: 5,
-        marginRight: 5,
+        marginTop: normalize(50),
+        marginBottom: normalize(15),
+        marginLeft: normalize(5),
+        marginRight: normalize(5),
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between"
     },
     buttonContainer: {
-        padding: 12,
+        padding: normalize(12),
         width: "48%",
         alignItems: "center",
         justifyContent: "center",
@@ -371,6 +401,6 @@ const styles = StyleSheet.create({
     lineChartTextStyle: {
         fontSize: 15,
         fontWeight: "bold",
-        color: "#000000"
+        color: "#d6d6d8"
     }
 });

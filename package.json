@@ -1,5 +1,5 @@
 {
-  "name": "crypto-tracker-app",
+  "name": "crypto-app",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -24,6 +24,7 @@
     "expo-updates": "~0.18.16",
     "js-base64": "^3.7.5",
     "lottie-react-native": "^5.1.6",
+    "moment": "^2.30.1",
     "react": "18.2.0",
     "react-native": "0.72.5",
     "react-native-chart-kit": "^6.12.0",

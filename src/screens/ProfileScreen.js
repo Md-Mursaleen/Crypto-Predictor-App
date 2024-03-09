@@ -8,17 +8,21 @@ import Entypo from "react-native-vector-icons/Entypo";
 const ProfileScreen = () => {
     const navigation = useNavigation();
     const [signedUser, setSignedUser] = useState();
+
     const getSignedUserData = async () => {
         const signedUserData = await AsyncStorage.getItem("SignedUserData");
         setSignedUser(JSON.parse(signedUserData));
     };
+
     useEffect(() => {
         getSignedUserData();
     }, []);
+
     const signOutWithGoogle = async () => {
         auth().signOut();
         navigation.navigate("Login");
     };
+
     return (
         <View style={styles.container}>
             <Text style={styles.profileTextStyle}>Profile</Text>
@@ -58,17 +62,19 @@ const ProfileScreen = () => {
             <View style={styles.bottomContainer}>
                 <Pressable onPress={() => navigation.navigate("Portfolio")}
                     style={styles.subBottomContainer}>
-                    <Image source={require("../../assets/images/wallet-image.png")}
-                        style={[styles.iconStyle, { marginLeft: 5 }]} />
-                    <Text style={styles.bottomContainerTextStyle}>Current Assets</Text>
-                    <Entypo name="chevron-small-right" size={20} color="#5e80fc"
-                        style={styles.arrowIconStyle} />
+                    {/* <Image source={require("../../assets/images/wallet-image.png")}
+                        style={[styles.iconStyle, { marginLeft: 5 }]} /> */}
+                    <Text style={styles.bottomContainerTextStyle}>Current Portfolio</Text>
+                    <View style={styles.itemSubContainer}>
+                        <Text style={styles.itemSubTextStyle}>0 USD</Text>
+                        <Entypo name="chevron-small-right" size={20} color="#5e80fc" />
+                    </View>
                 </Pressable>
                 <Pressable onPress={() => navigation.navigate("Watchlist")}
                     style={[styles.subBottomContainer, { marginTop: 25 }]}>
-                    <Image source={require("../../assets/images/star-icon.png")}
-                        style={styles.iconStyle} />
-                    <Text style={styles.bottomContainerTextStyle}>Watchlist Assets</Text>
+                    {/* <Image source={require("../../assets/images/star-icon.png")}
+                        style={styles.iconStyle} /> */}
+                    <Text style={styles.bottomContainerTextStyle}>Watchlist</Text>
                     <Entypo name="chevron-small-right" size={20} color="#5e80fc"
                         style={styles.arrowIconStyle} />
                 </Pressable>
@@ -87,26 +93,27 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 50,
-        backgroundColor: "#ffffff"
+        backgroundColor: "#141323"
     },
     profileTextStyle: {
         marginLeft: 15,
         fontSize: 29,
         fontWeight: "bold",
-        color: "#000000"
+        color: "#ffffff"
     },
     profileImageStyle: {
+        marginBottom: 8,
         width: 240,
-        height: 170,
+        height: 180,
         alignSelf: "center",
         resizeMode: "contain"
     },
     titleTextStyle: {
-        marginVertical: 15,
+        marginVertical: 12,
         marginLeft: 20,
-        fontSize: 13.8,
-        fontWeight: "500",
-        color: "#60687b"
+        fontSize: 14.8,
+        fontWeight: "600",
+        color: "#5e80fc"
     },
     itemContainer: {
         marginLeft: 15,
@@ -116,9 +123,9 @@ const styles = StyleSheet.create({
     },
     itemTextStyle: {
         marginLeft: 5,
-        fontSize: 15.2,
+        fontSize: 14.3,
         fontWeight: "500",
-        color: "#000000"
+        color: "#d6d6d8"
     },
     itemSubContainer: {
         marginRight: 17,
@@ -127,7 +134,7 @@ const styles = StyleSheet.create({
     },
     itemSubTextStyle: {
         marginRight: 10,
-        fontSize: 14.8,
+        fontSize: 14,
         fontWeight: "500",
         color: "grey"
     },
@@ -138,7 +145,8 @@ const styles = StyleSheet.create({
     },
     subBottomContainer: {
         flexDirection: "row",
-        alignItems: "center"
+        alignItems: "center",
+        justifyContent: "space-between"
     },
     iconStyle: {
         width: 30,
@@ -146,23 +154,24 @@ const styles = StyleSheet.create({
         resizeMode: "contain"
     },
     bottomContainerTextStyle: {
-        marginLeft: 15,
+        // marginLeft: 15,
+        marginLeft: 5,
         fontSize: 15.5,
         fontWeight: "500",
-        color: "#000000"
+        color: "#d6d6d8"
     },
     arrowIconStyle: {
         marginLeft: "auto",
         marginRight: 18
     },
     buttonContainer: {
-        padding: 12.5,
-        marginHorizontal: 15,
+        padding: 12,
+        marginHorizontal: 18,
         marginTop: "auto",
-        marginBottom: 12,
+        marginBottom: 18,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#c14850",
+        backgroundColor: "#ea3943",
         borderRadius: 5
     },
     signOutTextStyle: {

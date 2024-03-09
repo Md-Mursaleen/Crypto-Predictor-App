@@ -5,6 +5,7 @@ import Feather from "react-native-vector-icons/Feather";
 
 const WelcomeScreen = () => {
     const navigation = useNavigation();
+
     return (
         <View style={styles.container}>
             <Image source={require("../../assets/images/welcome-image.png")}

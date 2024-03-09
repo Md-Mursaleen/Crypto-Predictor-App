@@ -2,12 +2,14 @@ import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LineChart } from "react-native-chart-kit";
+import { normalize } from "./theme";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
 const CryptoItem = ({ cryptodata }) => {
     const navigation = useNavigation();
     const { id, symbol, image, current_price, market_cap_rank, market_cap,
         price_change_percentage_24h, sparkline_in_7d } = cryptodata;
+
     const cryptoMarketCap = (market_cap) => {
         if (market_cap > 1e12) {
             return `${(market_cap / 1e12).toFixed(3)} Tn`;
@@ -23,7 +25,9 @@ const CryptoItem = ({ cryptodata }) => {
         }
         return market_cap;
     }
-    const pricePercentage = price_change_percentage_24h < 0 ? "#c14850" : "#26b985";
+
+    const pricePercentage = price_change_percentage_24h < 0 ? "#d0585c" : "#6ac77e";
+
     return (
         <Pressable onPress={() => navigation.navigate("CryptoDetails", {
             cryptoid: id
@@ -51,13 +55,12 @@ const CryptoItem = ({ cryptodata }) => {
                     width={100}
                     height={48}
                     chartConfig={{
-                        backgroundGradientFrom: "#ffffff",
-                        backgroundGradientTo: "#ffffff",
+                        backgroundGradientFrom: "#141323",
+                        backgroundGradientTo: "#141323",
                         color: () => pricePercentage
                     }}
                     bezier
-                    style={{ paddingRight: 0 }}
-                />
+                    style={{ paddingRight: 0, paddingTop: 0 }} />
             </View>
             <View style={styles.priceValueContainer}>
                 <Text style={styles.priceTextStyle}>{current_price === 1 ? "1.00" :
@@ -77,35 +80,34 @@ export default CryptoItem;
 
 const styles = StyleSheet.create({
     cryptoContainer: {
-        padding: 13,
+        padding: normalize(13),
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
         borderBottomWidth: StyleSheet.hairlineWidth,
-        borderBottomColor: "#ffffff"
+        borderBottomColor: "#141323"
     },
     positionTextStyle: {
-        marginLeft: 7,
         fontSize: 14.5,
         fontWeight: "500",
-        color: "#7a7f8a"
+        color: "#7c7b7e"
     },
     imageStyle: {
-        marginLeft: 26,
-        marginRight: 10,
-        height: 28,
-        width: 28
+        marginLeft: normalize(23),
+        marginRight: normalize(10),
+        height: normalize(28),
+        width: normalize(28)
     },
     symbolTextSytle: {
-        marginRight: 5,
+        marginRight: normalize(5),
         fontWeight: "bold",
-        color: "#000000"
+        color: "#d2d1d4"
     },
     marketCapTextStyle: {
-        marginTop: 2,
+        marginTop: normalize(2),
         fontSize: 13,
         fontWeight: "500",
-        color: "#656e78"
+        color: "#7c7b7e"
     },
     percentageChangeGraphContainer: {
         marginLeft: "auto",
@@ -113,28 +115,28 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     priceValueContainer: {
-        marginRight: 4,
+        marginRight: normalize(4),
         marginLeft: "auto",
         flexDirection: "column",
         alignItems: "center"
     },
     priceTextStyle: {
-        marginLeft: 2,
-        marginBottom: 2,
+        marginLeft: normalize(2),
+        marginBottom: normalize(2),
         fontSize: 14.5,
         fontWeight: "500",
-        color: "#000000"
+        color: "#d6d6d8"
     },
     pricePercentageContainer: {
-        width: 65,
-        height: 26,
+        width: normalize(65),
+        height: normalize(26),
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 10
     },
     iconStyle: {
-        marginRight: 5,
+        marginRight: normalize(5),
         alignSelf: "center"
     },
     priceChangeTextStyle: {

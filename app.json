@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "CoinTracking - Crypto Portfolio",
-    "slug": "crypto-tracker-app",
+    "name": "Coin Tracking",
+    "slug": "crypto-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -10,12 +10,7 @@
       "@react-native-google-signin/google-signin"
     ],
     "updates": {
-      "useClassicUpdates": true
-    },
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "url": "https://u.expo.dev/f4eefbc2-0833-4545-898d-fe54f0214bea"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -36,8 +31,11 @@
     },
     "extra": {
       "eas": {
-        "projectId": "7980ccb3-6087-4575-9c94-8a6d4a06d0d4"
+        "projectId": "f4eefbc2-0833-4545-898d-fe54f0214bea"
       }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
     }
   }
 }

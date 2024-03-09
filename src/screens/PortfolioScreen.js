@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import { normalize } from "../components/theme";
 import PortfolioAssets from "../components/PortfolioAssets";
 
 const PortfolioScreen = () => {
@@ -15,7 +16,7 @@ export default PortfolioScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 50,
-        backgroundColor: "#ffffff"
+        paddingTop: normalize(50),
+        backgroundColor: "#141323"
     }
 });

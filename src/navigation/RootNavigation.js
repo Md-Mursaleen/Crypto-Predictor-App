@@ -7,18 +7,19 @@ import WelcomeScreen from "../screens/WelcomeScreen";
 import AddAssetScreen from "../screens/AddAssetScreen";
 import CryptoExchangeScreen from "../screens/CryptoExchangeScreen";
 import BottomTabNavigation from "./BottomTabNavigation";
+import SplashScreen from "../screens/SplashScreen";
 
 const Stack = createStackNavigator();
 
 const RootNavigation = () => {
     return (
-        <NavigationContainer>
+        <NavigationContainer theme={{ colors: { background: "#141323" } }}>
             <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Login">
                 <Stack.Screen name="Login" component={LoginScreen} />
                 <Stack.Screen name="Welcome" component={WelcomeScreen} />
                 <Stack.Screen name="BottomTab" component={BottomTabNavigation} />
                 <Stack.Screen name="CryptoDetails" component={CryptoDetailsScreen} />
-                <Stack.Screen name="Asset" component={AddAssetScreen} />
+                <Stack.Screen name="AddAsset" component={AddAssetScreen} />
                 <Stack.Screen name="CryptoExchange" component={CryptoExchangeScreen} />
             </Stack.Navigator>
         </NavigationContainer>

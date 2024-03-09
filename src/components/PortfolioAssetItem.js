@@ -4,7 +4,8 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 
 const PortfolioAssetItem = ({ assetitem }) => {
     const { name, symbol, image, current_price, quantity, price_change_percentage_24h } = assetitem;
-    const pricePercentage = price_change_percentage_24h < 0 ? "#ea3943" : "#16c784";
+    const pricePercentage = price_change_percentage_24h < 0 ? "#d0585c" : "#6ac77e";
+
     return (
         <View style={styles.container}>
             <Image source={{ uri: image }} style={styles.imageStyle} />
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
         padding: 15,
         flexDirection: "row",
         alignItems: "center",
-        backgroundColor: "#ffffff"
+        backgroundColor: "#141323"
     },
     imageStyle: {
         marginLeft: -5,
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: "600",
         alignSelf: "flex-end",
-        color: "#000000"
+        color: "#d6d6d8"
     },
     symbolTextStyle: {
         fontSize: 13.5,

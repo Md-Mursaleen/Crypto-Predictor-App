@@ -18,14 +18,16 @@ const BottomTab = createBottomTabNavigator();
 
 const BottomTabNavigation = () => {
     const [signedUser, setSignedUser] = useState();
+
     const getSignedUserData = async () => {
         const signedUserData = await AsyncStorage.getItem("SignedUserData");
         setSignedUser(JSON.parse(signedUserData));
     };
+
     useEffect(() => {
         getSignedUserData();
     }, []);
-    // console.log(signedUser);
+
     return (
         <BottomTab.Navigator screenOptions={{
             headerShown: false,
@@ -69,7 +71,8 @@ export default BottomTabNavigation;
 const styles = StyleSheet.create({
     tabBarStyle: {
         height: 55,
-        backgroundColor: "white"
+        backgroundColor: "#141323",
+        borderTopWidth: 0,
     },
     tabBarLabelStyle: {
         paddingBottom: 0,
@@ -79,6 +82,8 @@ const styles = StyleSheet.create({
     profileImageStyle: {
         width: 30,
         height: 30,
-        resizeMode: "contain"
+        borderWidth: 2.5,
+        borderColor: "#5e80fc",
+        borderRadius: 50
     }
 });

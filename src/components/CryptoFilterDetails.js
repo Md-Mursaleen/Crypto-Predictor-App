@@ -3,6 +3,7 @@ import { Text, StyleSheet, Pressable } from "react-native";
 
 const CryptoFilterDetails = (props) => {
     const { day, value, selectedText, setSelectedText } = props;
+
     return (
         <Pressable onPress={() => setSelectedText(day)}
             style={[styles.container, selectedText === day && { backgroundColor: "#ffffff" }]}>

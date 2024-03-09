@@ -12,6 +12,7 @@ export default function App() {
   useEffect(() => {
     NavigationBar.setBackgroundColorAsync("#ffffff");
   }, []);
+
   return (
     <RecoilRoot>
       <WatchlistContext>
