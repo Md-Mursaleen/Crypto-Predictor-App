@@ -14,8 +14,10 @@ Crypto Predictor App is a cross-platform mobile application built using React Na
 
 ## Screenshots
 
-![Screenshot1](assets/images/screenshot1.png)
-![Screenshot2](assets/images/screenshot2.png)
+![Screenshot1](assets/screenshot1.jpeg)
+![Screenshot2](assets/screenshot2.jpeg)
+![Screenshot3](assets/screenshot3.jpeg)
+![Screenshot4](assets/screenshot4.jpeg)
 
 ## Installation
 
