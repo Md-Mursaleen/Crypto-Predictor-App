@@ -24,19 +24,15 @@ Crypto Predictor App is a cross-platform mobile application built using React Na
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/Md-Mursaleen/Crypto-Predictor-App.git
-
 2. **Navigate to the project directory**:
    ```bash
    cd Crypto-Predictor-App
-   
 3. **Install dependencies**:
    ```bash
    npm install
-   
 4. **Set up Firebase**:
    Create a new Firebase project.
    Add your Firebase configuration to firebaseConfig.js.
-
 5. **Start the application**:
    ```bash
    npm start
