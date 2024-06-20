@@ -36,3 +36,11 @@ Crypto Predictor App is a cross-platform mobile application built using React Na
 5. **Start the application**:
    ```bash
    npm start
+
+ ## Usage
+
+1. **Sign Up / Login**: Create an account or log in.
+2. **Track Prices**: View real-time prices of various cryptocurrencies.
+3. **Predict Prices**: Get predictive analysis of future prices.
+4. **Visualize Data**: Use charts to visualize historical and predicted data.
+5. **Manage Profile**: Update profile information and view history.  
