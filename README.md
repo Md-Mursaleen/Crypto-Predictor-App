@@ -43,4 +43,20 @@ Crypto Predictor App is a cross-platform mobile application built using React Na
 2. **Track Prices**: View real-time prices of various cryptocurrencies.
 3. **Predict Prices**: Get predictive analysis of future prices.
 4. **Visualize Data**: Use charts to visualize historical and predicted data.
-5. **Manage Profile**: Update profile information and view history.  
+5. **Manage Profile**: Update profile information and view history.
+
+## Contributing
+
+Contributions are welcome! Follow these steps:
+
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature-branch
+3. Make changes and commit them:
+   ```bash
+   git commit -m 'Add feature'
+4. Push to the branch:
+   ```bash
+   git push origin feature-branch
+5. Open a Pull Request.
