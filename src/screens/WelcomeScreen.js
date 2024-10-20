@@ -24,8 +24,7 @@ const WelcomeScreen = () => {
                 <Image source={require('../../assets/images/banner-image.png')}
                     style={styles.bannerImageStyle} />
             </View>
-            <Text style={styles.subTitleTextStyle}>
-                Invest your virtual crypto and</Text>
+            <Text style={styles.subTitleTextStyle}>Invest your virtual crypto and</Text>
             <Text style={styles.subTitleTextStyle}>compete with others</Text>
             <TouchableOpacity onPress={handleGetStarted} style={styles.buttonContainer}>
                 <Text style={styles.buttonTextStyle}>Start Investing</Text>
@@ -82,7 +81,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#0088f9',
+        backgroundColor: '#0052fe',
         borderRadius: 5,
     },
     buttonTextStyle: {

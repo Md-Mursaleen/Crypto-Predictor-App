@@ -11,14 +11,12 @@ import LottieView from 'lottie-react-native';
 const LoginScreen = () => {
     const navigation = useNavigation();
     const [initializing, setInitializing] = useState(true);
-    const [user, setUser] = useState();
 
     GoogleSignin.configure({
         webClientId: '1017811191585-sncskt58kev837t6f4a18kl03gcm1dao.apps.googleusercontent.com'
     });
 
     function onAuthStateChanged(user) {
-        setUser(user);
         AsyncStorage.setItem('SignedUserData', JSON.stringify({ user, loggedIn: true }));
         if (initializing) setInitializing(false);
     }
@@ -28,15 +26,10 @@ const LoginScreen = () => {
         return subscriber;
     }, []);
 
-    useEffect(() => {
-        if (user) {
-            navigation.navigate('BottomTab');
-        }
-    }, [user]);
-
     const signInWithGoogle = async () => {
         await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-        const { idToken } = await GoogleSignin.signIn();
+        const userInfo = await GoogleSignin.signIn();
+        const idToken = userInfo.data?.idToken;
         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
         const signedInUser = auth().signInWithCredential(googleCredential);
         signedInUser.then((user) => {
@@ -49,8 +42,8 @@ const LoginScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Image source={require('../../assets/images/logo.jpg')}
-                style={styles.logoImageStyle} />
+            <Image source={require('../../assets/images/login.png')}
+                style={styles.imageStyle} />
             <Text style={styles.titleTextStyle}>Easily track your</Text>
             <Text style={styles.subTitleTextStyle}>crypto</Text>
             <Text style={styles.textStyle}>Trusted by over 1 million users</Text>
@@ -58,8 +51,7 @@ const LoginScreen = () => {
                 autoPlay={true}
                 loop={true}
                 style={styles.lottieAnimationStyle} />
-            <TouchableOpacity onPress={() => signInWithGoogle()}
-                style={styles.buttonContainer}>
+            <TouchableOpacity onPress={signInWithGoogle} style={styles.buttonContainer}>
                 <Text style={styles.buttonTextStyle}>Sign in with Google</Text>
             </TouchableOpacity>
         </View>
@@ -71,57 +63,61 @@ export default LoginScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',
     },
-    logoImageStyle: {
-        marginTop: normalize(70),
-        marginLeft: normalize(32),
-        width: normalize(60),
-        height: normalize(60),
-        resizeMode: 'contain'
+    imageStyle: {
+        marginTop: normalize(-20),
+        marginLeft: normalize(-14),
+        width: '85%',
+        height: '30%',
+        resizeMode: 'contain',
     },
     titleTextStyle: {
-        marginTop: normalize(10),
+        marginTop: normalize(-80),
         marginLeft: normalize(30),
-        fontSize: 36,
-        fontWeight: '700',
-        color: '#000000'
+        fontSize: 35,
+        fontWeight: '600',
+        fontFamily: 'Inter-Bold',
+        color: '#000000',
     },
     subTitleTextStyle: {
         marginTop: normalize(-8),
         marginLeft: normalize(30),
         fontSize: 30,
-        fontWeight: 'bold',
-        color: '#0052fe'
+        fontWeight: '600',
+        fontFamily: 'Inter-Bold',
+        color: '#0052fe',
     },
     textStyle: {
         marginTop: normalize(10),
         marginLeft: normalize(30),
         fontSize: 16,
-        fontWeight: '600',
-        color: 'grey'
+        fontWeight: '500',
+        fontFamily: 'Inter-SemiBold',
+        color: '#808080',
     },
     lottieAnimationStyle: {
         flex: 1,
         marginTop: '20%',
-        marginHorizontal: normalize(8),
+        marginHorizontal: normalize(5),
         alignSelf: 'center',
         resizeMode: 'contain',
-        overflow: 'hidden'
+        overflow: 'hidden',
     },
     buttonContainer: {
-        padding: normalize(13),
-        marginHorizontal: normalize(12),
+        padding: normalize(14),
         marginTop: 'auto',
         marginBottom: normalize(30),
+        marginHorizontal: normalize(20),
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#0052fe',
-        borderRadius: 5
+        borderRadius: 5,
     },
     buttonTextStyle: {
         fontSize: 16,
         fontWeight: '500',
-        color: '#ffffff'
-    }
+        fontFamily: 'Inter-SemiBold',
+        color: '#ffffff',
+    },
 });

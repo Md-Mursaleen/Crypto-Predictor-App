@@ -9,6 +9,10 @@ import WatchlistContext from './src/contexts/WatchlistContext';
 import RootNavigation from './src/navigation/RootNavigation';
 import SplashScreen from './src/screens/SplashScreen';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+AsyncStorage.clear();
+
 LogBox.ignoreAllLogs();
 
 export default function App() {
