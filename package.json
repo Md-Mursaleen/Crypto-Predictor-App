@@ -19,6 +19,7 @@
     "axios": "^1.5.1",
     "expo": "~49.0.13",
     "expo-dev-client": "~2.4.11",
+    "expo-font": "~11.4.0",
     "expo-navigation-bar": "~2.3.0",
     "expo-status-bar": "~1.6.0",
     "expo-updates": "~0.18.16",
