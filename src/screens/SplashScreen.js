@@ -1,12 +1,37 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import * as NavigationBar from 'expo-navigation-bar';
 import { normalize } from '../components/theme';
+import { StackActions, useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SplashScreen = () => {
+    const navigation = useNavigation();
+    const [signedUser, setSignedUser] = useState();
+
     useEffect(() => {
-        NavigationBar.setBackgroundColorAsync('#ffffff');
+        const hasShownWelcome = async () => {
+            const hasShownWelcome = await AsyncStorage.getItem('hasShownWelcome');
+            if (hasShownWelcome === null) {
+                navigation.dispatch(
+                    StackActions.replace('Welcome'),
+                )
+            }
+            else {
+                const signedUserData = await AsyncStorage.getItem('SignedUserData');
+                setSignedUser(JSON.parse(signedUserData));
+                if (signedUser) {
+                    navigation.dispatch(
+                        StackActions.replace('BottomTab'),
+                    )
+                }
+                else {
+                    navigation.dispatch(
+                        StackActions.replace('Login'),
+                    )
+                }
+            }
+        };
+        hasShownWelcome();
     }, []);
 
     return (

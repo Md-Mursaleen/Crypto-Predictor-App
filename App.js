@@ -9,9 +9,10 @@ import WatchlistContext from './src/contexts/WatchlistContext';
 import RootNavigation from './src/navigation/RootNavigation';
 import SplashScreen from './src/screens/SplashScreen';
 
+LogBox.ignoreAllLogs();
+
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
-  LogBox.ignoreAllLogs();
 
   useEffect(() => {
     NavigationBar.setBackgroundColorAsync('#ffffff');
