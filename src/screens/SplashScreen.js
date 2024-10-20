@@ -1,9 +1,10 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const SplashScreen = () => {
     return (
-        <View>
+        <View style={styles.container}>
             <Text>SplashScreen</Text>
         </View>
     );
@@ -12,5 +13,8 @@ const SplashScreen = () => {
 export default SplashScreen;
 
 const styles = StyleSheet.create({
-
+    container: {
+        flex: 1,
+        backgroundColor: '#ffffff',
+    },
 });

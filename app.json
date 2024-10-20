@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "Coin Tracking",
-    "slug": "crypto-app",
-    "version": "1.0.0",
+    "slug": "cryptoapp",
+    "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -20,22 +20,22 @@
     },
     "android": {
       "package": "com.cointracking.app",
-      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "extra": {
-      "eas": {
-        "projectId": "f4eefbc2-0833-4545-898d-fe54f0214bea"
-      }
-    },
     "runtimeVersion": {
       "policy": "sdkVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b611fb69-dfe0-430d-a3bf-3d49a3abf033"
+      }
     }
   }
 }
