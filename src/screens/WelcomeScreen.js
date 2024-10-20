@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { StackActions, useNavigation } from '@react-navigation/native';
+import { normalize } from '../components/theme';
 import Feather from 'react-native-vector-icons/Feather';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -23,11 +24,10 @@ const WelcomeScreen = () => {
                 <Image source={require('../../assets/images/banner-image.png')}
                     style={styles.bannerImageStyle} />
             </View>
-            <Text style={[styles.subTitleTextStyle, { marginTop: -5 }]}>
+            <Text style={styles.subTitleTextStyle}>
                 Invest your virtual crypto and</Text>
             <Text style={styles.subTitleTextStyle}>compete with others</Text>
-            <TouchableOpacity onPress={handleGetStarted}
-                style={styles.buttonContainer}>
+            <TouchableOpacity onPress={handleGetStarted} style={styles.buttonContainer}>
                 <Text style={styles.buttonTextStyle}>Start Investing</Text>
                 <Feather name='arrow-right' size={24} color='#ffffff' style={{ marginLeft: 'auto' }} />
             </TouchableOpacity>
@@ -40,55 +40,58 @@ export default WelcomeScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',
     },
     imageStyle: {
-        marginTop: 65,
+        marginTop: normalize(65),
         width: '85%',
         height: '35%',
         alignSelf: 'center',
-        resizeMode: 'contain'
+        resizeMode: 'contain',
     },
     headerContainer: {
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     titleTextStyle: {
-        marginLeft: 3,
-        marginTop: 15,
-        marginBottom: 10,
+        marginTop: normalize(15),
         fontSize: 28,
-        fontWeight: 'bold',
-        color: '#0d243d'
+        fontWeight: '600',
+        fontFamily: 'Inter-Bold',
+        color: '#0d243d',
+        textAlign: 'center',
     },
     bannerImageStyle: {
-        marginTop: -28,
-        height: 100,
-        width: '62%',
-        resizeMode: 'contain'
+        marginBottom: normalize(5),
+        height: normalize(60),
+        width: '60%',
     },
     subTitleTextStyle: {
         fontSize: 18,
         fontWeight: '500',
         color: '#a7a7a7',
-        textAlign: 'center'
+        fontFamily: 'Inter-SemiBold',
+        textAlign: 'center',
     },
     buttonContainer: {
-        padding: 11,
-        marginTop: 180,
-        marginHorizontal: 10,
+        padding: normalize(12),
+        marginTop: 'auto',
+        marginBottom: normalize(30),
+        marginHorizontal: normalize(20),
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#0088f9',
-        borderRadius: 5
+        borderRadius: 5,
     },
     buttonTextStyle: {
-        marginRight: -20,
+        marginRight: normalize(-18),
         marginLeft: 'auto',
         fontSize: 16,
         fontWeight: '500',
-        color: '#ffffff'
-    }
+        fontFamily: 'Inter-SemiBold',
+        color: '#ffffff',
+        textAlign: 'center',
+    },
 });
