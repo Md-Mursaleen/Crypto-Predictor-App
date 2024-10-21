@@ -36,7 +36,7 @@ const CryptoNewsScreen = () => {
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
-                <Text style={styles.headerTextStyle}>Crypto News</Text>
+                <Text style={styles.headerTextStyle}>Top Crypto News</Text>
             </View>
             {loading && newsData.length === 0 ? (
                 <ActivityIndicator size='large' color='#ffffff' />
