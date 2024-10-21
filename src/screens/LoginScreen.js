@@ -17,7 +17,7 @@ const LoginScreen = () => {
     });
 
     function onAuthStateChanged(user) {
-        AsyncStorage.setItem('SignedUserData', JSON.stringify({ user, loggedIn: true }));
+        AsyncStorage.setItem('SignedUserData', JSON.stringify({ user: user, loggedIn: true }));
         if (initializing) setInitializing(false);
     }
 

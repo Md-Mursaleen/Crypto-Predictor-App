@@ -10,14 +10,15 @@ const SplashScreen = () => {
     useEffect(() => {
         const hasShownWelcome = async () => {
             const hasShownWelcome = await AsyncStorage.getItem('hasShownWelcome');
+            const signedUserData = await AsyncStorage.getItem('SignedUserData');
+            const signedData = JSON.parse(signedUserData);
             if (hasShownWelcome === null) {
                 navigation.dispatch(
                     StackActions.replace('Welcome'),
                 )
             }
             else {
-                const signedUserData = await AsyncStorage.getItem('SignedUserData');
-                if (signedUserData.loggedIn === true) {
+                if (signedData.loggedIn) {
                     navigation.dispatch(
                         StackActions.replace('BottomTab'),
                     )

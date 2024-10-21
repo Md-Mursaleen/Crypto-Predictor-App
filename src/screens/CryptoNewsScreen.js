@@ -1,89 +1,58 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, FlatList, RefreshControl } from "react-native";
-import LottieView from "lottie-react-native";
-import NewsItem from "../components/NewsItem";
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, FlatList, RefreshControl, ActivityIndicator } from 'react-native';
+import { normalize } from '../components/theme';
+import NewsItem from '../components/NewsItem';
+
+const API_URL = 'https://cryptopanic.com/api/v1/posts/?auth_token=6f7215ae9854466e72b07651ae5dc0ca98e1cea5&public=true';
 
 const CryptoNewsScreen = () => {
     const [newsData, setNewsData] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const url =
-                "https://cryptopanic.com/api/v1/posts/?auth_token=6f7215ae9854466e72b07651ae5dc0ca98e1cea5&public=true";
-            try {
-                if (loading) {
-                    return;
-                }
-                setLoading(true);
-                const response = await fetch(url, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                });
-                const responseData = await response.json();
-                // console.log('API Response: ', responseData);
-                setNewsData(responseData.results);
-                setLoading(false);
-            } catch (error) {
-                console.log("Error while fetching data: ", error);
-            }
-        };
-        fetchData();
-    }, []);
-
-    const refetchNewsData = async () => {
-        if (loading) {
-            return;
-        }
+    const fetchData = async () => {
+        if (loading) return;
         setLoading(true);
-        const url =
-            "https://cryptopanic.com/api/v1/posts/?auth_token=6f7215ae9854466e72b07651ae5dc0ca98e1cea5&public=true";
+        setError(null);
         try {
-            if (loading) {
-                return;
-            }
-            setLoading(true);
-            const response = await fetch(url, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
+            const response = await fetch(API_URL, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
             });
             const responseData = await response.json();
-            // console.log('API Response: ', responseData);
             setNewsData(responseData.results);
-            setLoading(false);
         } catch (error) {
-            console.log("Error while fetching data: ", error);
+            setError(`Failed to load news due to ${error}`);
+            console.log('Error while fetching data: ', error);
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
     };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
                 <Text style={styles.headerTextStyle}>Crypto News</Text>
             </View>
-            <FlatList data={newsData}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => <NewsItem item={item} />}
-                refreshControl={
-                    <RefreshControl refreshing={loading} tintColor="#000000"
-                        onRefresh={refetchNewsData} />
-                }
-                style={styles.flatListStyle} />
-            {/* <LottieView source={require("../../assets/animations/announcement-animation.json")}
-                autoPlay
-                speed={0.8}
-                loop={true}
-                style={styles.lottieStyle} />
-            <View>
-                <Text style={styles.titleTextStyle}>About to Launch.</Text>
-                <Text style={[styles.subTitleTextStyle, { marginTop: 20 }]}>
-                    We are going to launch the crypto news of your favourites crypto currencies soon.</Text>
-            </View> */}
+            {loading && newsData.length === 0 ? (
+                <ActivityIndicator size='large' color='#ffffff' />
+            ) : error ? (
+                <View style={styles.errorContainer}>
+                    <Text style={styles.errorTextStyle}>{error}</Text>
+                </View>
+            ) : (
+                <FlatList data={newsData}
+                    keyExtractor={(item) => item.id}
+                    renderItem={({ item }) => <NewsItem item={item} />}
+                    refreshControl={
+                        <RefreshControl refreshing={loading} tintColor='#000000' onRefresh={fetchData} />
+                    }
+                    style={styles.flatListStyle} />
+            )}
         </View>
     );
 }
@@ -93,46 +62,36 @@ export default CryptoNewsScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#141323"
+        backgroundColor: '#141323',
     },
     headerContainer: {
-        paddingTop: 50,
-        paddingHorizontal: 10,
-        paddingBottom: 5,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between"
+        paddingTop: normalize(50),
+        marginLeft: normalize(10),
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
     },
     headerTextStyle: {
-        marginLeft: 10,
-        fontSize: 23,
-        fontWeight: "bold",
-        color: "#ffffff"
+        marginLeft: normalize(10),
+        fontSize: 25,
+        fontWeight: '600',
+        fontFamily: 'Inter-Bold',
+        color: '#ffffff',
     },
     flatListStyle: {
         flex: 1,
-        marginTop: 10,
-        marginBottom: 15
+        marginTop: normalize(5),
+        marginBottom: normalize(15),
     },
-    lottieStyle: {
-        marginTop: 30,
-        width: "100%",
-        height: 300,
-        alignSelf: "center"
+    errorContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    titleTextStyle: {
-        marginTop: 50,
-        alignSelf: "center",
-        fontSize: 27,
-        fontWeight: "bold",
-        color: "#d6d6d8"
+    errorTextStyle: {
+        fontSize: 18,
+        fontWeight: '500',
+        fontFamily: 'Inter-SemiBold',
+        color: '#ff6b6b',
     },
-    subTitleTextStyle: {
-        width: 300,
-        alignSelf: "center",
-        fontSize: 16.5,
-        fontWeight: "500",
-        color: "#808b9d",
-        textAlign: "center"
-    }
 });

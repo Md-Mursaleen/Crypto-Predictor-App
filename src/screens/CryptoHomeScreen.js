@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     },
     headerTextStyle: {
         marginLeft: normalize(8),
-        fontSize: 23,
+        fontSize: 25,
         fontWeight: '600',
         fontFamily: 'Inter-Bold',
         color: '#ffffff',

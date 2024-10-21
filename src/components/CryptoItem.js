@@ -51,7 +51,7 @@ const CryptoItem = ({ cryptodata }) => {
                             }
                         ]
                     }}
-                    width={100}
+                    width={120}
                     height={48}
                     chartConfig={{
                         backgroundGradientFrom: '#141323',
