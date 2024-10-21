@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { normalize } from '../components/theme';
 import { StackActions, useNavigation } from '@react-navigation/native';
@@ -6,7 +6,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SplashScreen = () => {
     const navigation = useNavigation();
-    const [signedUser, setSignedUser] = useState();
 
     useEffect(() => {
         const hasShownWelcome = async () => {
@@ -18,8 +17,7 @@ const SplashScreen = () => {
             }
             else {
                 const signedUserData = await AsyncStorage.getItem('SignedUserData');
-                setSignedUser(JSON.parse(signedUserData));
-                if (signedUser) {
+                if (signedUserData.loggedIn === true) {
                     navigation.dispatch(
                         StackActions.replace('BottomTab'),
                     )

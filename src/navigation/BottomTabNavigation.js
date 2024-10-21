@@ -58,7 +58,7 @@ const BottomTabNavigation = () => {
             }} />
             <BottomTab.Screen name='Profile' component={ProfileScreen} options={{
                 tabBarLabelStyle: styles.tabBarLabelStyle,
-                tabBarIcon: ({ color, focused }) => !focused ? signedUser?.loggedIn === true &&
+                tabBarIcon: ({ focused }) => !focused ? signedUser?.loggedIn === true &&
                     <Image source={{ uri: signedUser?.user?.photoURL }} style={styles.profileImageStyle} /> :
                     signedUser?.loggedIn === true && <Image source={{ uri: signedUser?.user?.photoURL }} style={styles.profileImageStyle} />
             }} />
@@ -75,9 +75,9 @@ const styles = StyleSheet.create({
         borderTopWidth: 0,
     },
     tabBarLabelStyle: {
-        paddingBottom: 0,
         fontSize: 11.5,
         fontWeight: '600',
+        fontFamily: 'Inter-SemiBold',
     },
     profileImageStyle: {
         width: normalize(30),

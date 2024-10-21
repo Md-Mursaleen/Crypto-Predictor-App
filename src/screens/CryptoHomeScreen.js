@@ -83,36 +83,38 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: normalize(50),
-        backgroundColor: '#141323'
+        backgroundColor: '#141323',
     },
     headerContainer: {
         paddingHorizontal: normalize(10),
         paddingBottom: normalize(5),
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     headerTextStyle: {
         marginLeft: normalize(8),
         fontSize: 23,
-        fontWeight: 'bold',
-        color: '#ffffff'
+        fontWeight: '600',
+        fontFamily: 'Inter-Bold',
+        color: '#ffffff',
     },
     subHeaderContainer: {
         marginTop: normalize(13),
         marginHorizontal: normalize(15),
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     subHeaderItemContainer: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     subHeaderTextStyle: {
         marginRight: normalize(5),
-        fontSize: 14.2,
+        fontSize: 14,
         fontWeight: '500',
-        color: '#d6d6d8'
-    }
+        fontFamily: 'Inter-SemiBold',
+        color: '#d6d6d8',
+    },
 });

@@ -29,7 +29,7 @@ const LoginScreen = () => {
     const signInWithGoogle = async () => {
         await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
         const userInfo = await GoogleSignin.signIn();
-        const idToken = userInfo.data?.idToken;
+        const idToken = userInfo.idToken;
         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
         const signedInUser = auth().signInWithCredential(googleCredential);
         signedInUser.then((user) => {
@@ -37,13 +37,12 @@ const LoginScreen = () => {
         }).catch((error) => {
             console.log(error);
         });
-        navigation.navigate('Welcome');
+        navigation.navigate('BottomTab');
     };
 
     return (
         <View style={styles.container}>
-            <Image source={require('../../assets/images/login.png')}
-                style={styles.imageStyle} />
+            <Image source={require('../../assets/images/login.png')} style={styles.imageStyle} />
             <Text style={styles.titleTextStyle}>Easily track your</Text>
             <Text style={styles.subTitleTextStyle}>crypto</Text>
             <Text style={styles.textStyle}>Trusted by over 1 million users</Text>
@@ -63,17 +62,17 @@ export default LoginScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#f8f8fa',
     },
     imageStyle: {
-        marginTop: normalize(-20),
-        marginLeft: normalize(-14),
-        width: '85%',
+        marginTop: normalize(-25),
+        marginLeft: normalize(-10),
+        width: '75%',
         height: '30%',
         resizeMode: 'contain',
     },
     titleTextStyle: {
-        marginTop: normalize(-80),
+        marginTop: normalize(-90),
         marginLeft: normalize(30),
         fontSize: 35,
         fontWeight: '600',
@@ -98,7 +97,7 @@ const styles = StyleSheet.create({
     },
     lottieAnimationStyle: {
         flex: 1,
-        marginTop: '20%',
+        marginTop: '15%',
         marginHorizontal: normalize(5),
         alignSelf: 'center',
         resizeMode: 'contain',
