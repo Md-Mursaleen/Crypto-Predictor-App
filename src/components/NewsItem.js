@@ -1,27 +1,37 @@
 import React from 'react';
-import { StyleSheet, Text, View, Linking, Alert } from 'react-native';
+import { StyleSheet, Text, View, Linking, Alert, Image } from 'react-native';
 import { normalize } from './theme';
 import moment from 'moment';
 
 const NewsItem = ({ item }) => {
-    const { kind, domain, source, title, published_at, slug, currencies, url, created_at, votes, meta_data } = item;
-    const timeAgo = moment(new Date(created_at)).fromNow();
+    // const { kind, domain, source, title, published_at, slug, currencies, url, created_at, votes, meta_data } = item;
+    // const timeAgo = moment(new Date(created_at)).fromNow();
+
+    const { title, news_site, updated_at, url, thumb_2x } = item;
+    const timeAgo = moment.unix(updated_at).fromNow();
 
     const openLink = async (url) => {
-        const supported = await Linking.canOpenURL(url);
-        if (supported) {
-            await Linking.openURL(url);
-        } else {
-            Alert.alert(`Don't know how to open this URL: ${url}`);
+        try {
+            const supported = await Linking.canOpenURL(url);
+            if (supported) {
+                await Linking.openURL(url);
+            } else {
+                Alert.alert(`Sorry, we can't open this link: ${url}`);
+            }
+        } catch (error) {
+            Alert.alert('An error occurred while trying to open the link.');
         }
     };
 
     return (
         <View style={styles.newsItemContainer}>
+            {thumb_2x && thumb_2x !== 'missing_large.png' && (
+                <Image source={{ uri: thumb_2x }} style={styles.newsItemImageStyle} />
+            )}
             <Text style={styles.newsTitleTextStyle}>{title} {' '}<Text onPress={() => openLink(url)}
                 style={styles.linkTextStyle}>Read more</Text></Text>
             <View style={styles.textContainer}>
-                <Text style={styles.textStyle}>{source.title} • </Text>
+                <Text style={styles.textStyle}>{news_site} • </Text>
                 <Text style={styles.textStyle}>{timeAgo}</Text>
             </View>
         </View>
@@ -66,5 +76,11 @@ const styles = StyleSheet.create({
         fontFamily: 'PlusJakartaSans-Medium',
         color: '#808080',
         lineHeight: 16,
+    },
+    newsItemImageStyle: {
+        marginBottom: 10,
+        width: '100%',
+        height: 150,
+        borderRadius: 10,
     },
 });

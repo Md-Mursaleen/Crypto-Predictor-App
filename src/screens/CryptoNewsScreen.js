@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, FlatList, RefreshControl, ActivityIndicator } f
 import { normalize } from '../components/theme';
 import NewsItem from '../components/NewsItem';
 
-const API_URL = 'https://cryptopanic.com/api/v1/posts/?auth_token=6f7215ae9854466e72b07651ae5dc0ca98e1cea5&public=true';
+const API_URL = 'https://api.coingecko.com/api/v3/news';
 
 const CryptoNewsScreen = () => {
     const [newsData, setNewsData] = useState([]);
@@ -20,9 +20,13 @@ const CryptoNewsScreen = () => {
                 headers: { 'Content-Type': 'application/json' }
             });
             const responseData = await response.json();
-            setNewsData(responseData.results);
+            if (responseData.data) {
+                setNewsData(responseData.data);
+            } else {
+                setError('No news available at the moment.');
+            }
         } catch (error) {
-            setError(`Failed to load news due to ${error}`);
+            setError(`Failed to load news. Please check your network connection.`);
             console.log('Error while fetching data: ', error);
         } finally {
             setLoading(false);
@@ -46,7 +50,7 @@ const CryptoNewsScreen = () => {
                 </View>
             ) : (
                 <FlatList data={newsData}
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={(item) => item.title}
                     renderItem={({ item }) => <NewsItem item={item} />}
                     refreshControl={
                         <RefreshControl refreshing={loading} tintColor='#000000' onRefresh={fetchData} />
