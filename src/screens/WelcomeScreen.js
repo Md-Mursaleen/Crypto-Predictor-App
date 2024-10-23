@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     buttonContainer: {
-        padding: normalize(12),
+        padding: normalize(14),
         marginTop: 'auto',
         marginBottom: normalize(30),
         marginHorizontal: normalize(20),

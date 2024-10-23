@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
     },
     imageStyle: {
         marginTop: normalize(-25),
-        marginLeft: normalize(-10),
-        width: '75%',
+        marginLeft: normalize(-5),
+        width: '70%',
         height: '30%',
         resizeMode: 'contain',
     },
