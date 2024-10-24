@@ -70,7 +70,7 @@ export default function App() {
           ) : (
             <RootNavigation />
           )}
-          <StatusBar style='light' />
+          <StatusBar style='auto' />
         </View>
       </WatchlistContext>
     </RecoilRoot>
