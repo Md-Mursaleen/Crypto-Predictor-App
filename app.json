@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "Coin Tracking",
+    "slug": "cryptoapp",
+    "version": "0.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "plugins": [
+      "@react-native-google-signin/google-signin"
+    ],
+    "updates": {
+      "url": "https://u.expo.dev/f4eefbc2-0833-4545-898d-fe54f0214bea"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.cointracking.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "googleServicesFile": "./google-services.json"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b611fb69-dfe0-430d-a3bf-3d49a3abf033"
+      }
+    }
+  }
+}

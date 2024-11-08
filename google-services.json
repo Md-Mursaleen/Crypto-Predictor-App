@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1017811191585",
+    "project_id": "crypto-tracker-app-4dc8d",
+    "storage_bucket": "crypto-tracker-app-4dc8d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1017811191585:android:7bf97fe5bd3e30864f6060",
+        "android_client_info": {
+          "package_name": "com.cointracking.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1017811191585-h3ks2q0uvghesdau5gdbsjlo19ptr4ev.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cointracking.app",
+            "certificate_hash": "138398de43d181d7aca19ba6d882e80b9f74bab0"
+          }
+        },
+        {
+          "client_id": "1017811191585-tqqltkck0cm11hnvuoc4m5ujtutc8na6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cointracking.app",
+            "certificate_hash": "77b47f12d5d8090903272fff7663eff3bc113b00"
+          }
+        },
+        {
+          "client_id": "1017811191585-sncskt58kev837t6f4a18kl03gcm1dao.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3-5VWwpQjS5xnkJ5cV17ahuJSil0NspA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1017811191585-sncskt58kev837t6f4a18kl03gcm1dao.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
