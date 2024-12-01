@@ -28,7 +28,7 @@ const WelcomeScreen = () => {
             <Text style={styles.subTitleTextStyle}>compete with others</Text>
             <TouchableOpacity onPress={handleGetStarted} style={styles.buttonContainer}>
                 <Text style={styles.buttonTextStyle}>Start Investing</Text>
-                <Feather name='arrow-right' size={24} color='#ffffff' style={{ marginLeft: 'auto' }} />
+                <Feather name='arrow-right' size={24} color='#FFFFFF' style={{ marginLeft: 'auto' }} />
             </TouchableOpacity>
         </View>
     );
@@ -39,7 +39,7 @@ export default WelcomeScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f8f8fa',
+        backgroundColor: '#F8F8FA',
     },
     imageStyle: {
         marginTop: normalize(65),
@@ -55,10 +55,10 @@ const styles = StyleSheet.create({
     },
     titleTextStyle: {
         marginTop: normalize(15),
-        fontSize: 28,
+        fontSize: 32,
         fontWeight: '600',
-        fontFamily: 'Inter-Bold',
-        color: '#0d243d',
+        fontFamily: 'PlusJakartaSans-SemiBold',
+        color: '#000000',
         textAlign: 'center',
     },
     bannerImageStyle: {
@@ -69,8 +69,8 @@ const styles = StyleSheet.create({
     subTitleTextStyle: {
         fontSize: 18,
         fontWeight: '500',
-        color: '#a7a7a7',
-        fontFamily: 'Inter-SemiBold',
+        color: '#A7A7A7',
+        fontFamily: 'PlusJakartaSans-Medium',
         textAlign: 'center',
     },
     buttonContainer: {
@@ -81,16 +81,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#0052fe',
+        backgroundColor: '#0052FE',
         borderRadius: 5,
     },
     buttonTextStyle: {
-        marginRight: normalize(-18),
+        marginRight: -18,
         marginLeft: 'auto',
         fontSize: 16,
         fontWeight: '500',
-        fontFamily: 'Inter-SemiBold',
-        color: '#ffffff',
+        fontFamily: 'PlusJakartaSans-SemiBold',
+        color: '#FFFFFF',
         textAlign: 'center',
     },
 });

@@ -60,21 +60,21 @@ const WatchlistScreen = () => {
                 <View style={styles.headerSubContainer}>
                     <View style={styles.headerSubItemContainer}>
                         <Text style={[styles.subHeaderTextStyle, { fontSize: 15 }]}>#</Text>
-                        <AntDesign name='caretdown' color='#5e80fc' size={12} />
+                        <AntDesign name='caretdown' color='#5E80FC' size={12} />
                     </View>
                     <View style={styles.headerSubItemContainer}>
                         <Text style={styles.subHeaderTextStyle}>Market Cap</Text>
-                        <AntDesign name='caretdown' color='#5e80fc' size={12}
+                        <AntDesign name='caretdown' color='#5E80FC' size={12}
                             style={{ marginRight: normalize(20) }} />
                     </View>
                     <View style={[styles.headerSubItemContainer, { marginLeft: 15 }]}>
                         <Text style={styles.subHeaderTextStyle}>24h%</Text>
-                        <AntDesign name='caretdown' color='#5e80fc' size={12}
+                        <AntDesign name='caretdown' color='#5E80FC' size={12}
                             style={{ marginRight: normalize(10) }} />
                     </View>
                     <View style={[styles.headerSubItemContainer, { marginRight: -15 }]}>
                         <Text style={styles.subHeaderTextStyle}>Price(USD)</Text>
-                        <AntDesign name='caretdown' color='#5e80fc' size={12}
+                        <AntDesign name='caretdown' color='#5E80FC' size={12}
                             style={{ marginRight: normalize(6) }} />
                     </View>
                 </View>
@@ -104,8 +104,8 @@ const styles = StyleSheet.create({
         marginLeft: normalize(10),
         fontSize: 25,
         fontWeight: '600',
-        fontFamily: 'Inter-Bold',
-        color: '#ffffff',
+        fontFamily: 'PlusJakartaSans-Bold',
+        color: '#FFFFFF',
     },
     lottieStyle: {
         marginTop: normalize(60),
@@ -117,15 +117,15 @@ const styles = StyleSheet.create({
         marginTop: normalize(70),
         fontSize: 26,
         fontWeight: '600',
-        fontFamily: 'Inter-Bold',
-        color: '#d6d6d8',
+        fontFamily: 'PlusJakartaSans-Bold',
+        color: '#D6D6D8',
         textAlign: 'center',
     },
     headerSubTitleTextStyle: {
         fontSize: 16,
         fontWeight: '500',
-        fontFamily: 'Inter-SemiBold',
-        color: '#808b9d',
+        fontFamily: 'PlusJakartaSans-SemiBold',
+        color: '#808B9D',
         textAlign: 'center',
     },
     buttonContainer: {
@@ -135,14 +135,15 @@ const styles = StyleSheet.create({
         marginHorizontal: normalize(20),
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#0052fe',
+        backgroundColor: '#0052FE',
         borderRadius: 5,
     },
     buttonTextStyle: {
         fontSize: 16,
         fontWeight: '500',
-        fontFamily: 'Inter-SemiBold',
-        color: '#ffffff',
+        fontFamily: 'PlusJakartaSans-SemiBold',
+        color: '#FFFFFF',
+        lineHeight: 24,
     },
     headerSubContainer: {
         marginTop: normalize(13),
@@ -160,6 +161,6 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: '500',
         fontFamily: 'Inter-SemiBold',
-        color: '#d6d6d8',
+        color: '#D6D6D8',
     },
 });

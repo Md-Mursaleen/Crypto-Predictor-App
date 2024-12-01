@@ -6,8 +6,8 @@ const CryptoFilterDetails = (props) => {
 
     return (
         <Pressable onPress={() => setSelectedText(day)}
-            style={[styles.container, selectedText === day && { backgroundColor: '#ffffff' }]}>
-            <Text style={[styles.textStyle, { color: selectedText === day ? '#000000' : '#636b77' }]}>
+            style={[styles.container, selectedText === day && { backgroundColor: '#FFFFFF' }]}>
+            <Text style={[styles.textStyle, { color: selectedText === day ? '#000000' : '#636B77' }]}>
                 {value}</Text>
         </Pressable>
     );

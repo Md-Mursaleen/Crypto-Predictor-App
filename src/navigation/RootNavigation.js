@@ -8,7 +8,9 @@ import AddAssetScreen from '../screens/AddAssetScreen';
 import CryptoExchangeScreen from '../screens/CryptoExchangeScreen';
 import BottomTabNavigation from './BottomTabNavigation';
 import SplashScreen from '../screens/SplashScreen';
-import DrawerTabNavigation from './DrawerTabNavigation';
+import StockDetailsScreen from '../screens/StockDetailsScreen';
+import ProfileSettingsScreen from '../screens/ProfileSettingsScreen';
+import HelpSupportScreen from '../screens/HelpSupportScreen';
 
 const Stack = createStackNavigator();
 
@@ -23,7 +25,9 @@ const RootNavigation = () => {
                 <Stack.Screen name='CryptoDetails' component={CryptoDetailsScreen} />
                 <Stack.Screen name='AddAsset' component={AddAssetScreen} />
                 <Stack.Screen name='CryptoExchange' component={CryptoExchangeScreen} />
-                <Stack.Screen name='DrawerTab' component={DrawerTabNavigation} />
+                <Stack.Screen name='StockDetails' component={StockDetailsScreen} />
+                <Stack.Screen name='HelpSupport' component={HelpSupportScreen} />
+                <Stack.Screen name='ProfileSettings' component={ProfileSettingsScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

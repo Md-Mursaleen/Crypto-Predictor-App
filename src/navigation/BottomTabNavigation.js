@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { normalize } from '../components/theme';
@@ -14,30 +14,18 @@ import WatchlistScreen from '../screens/WatchlistScreen';
 import CryptoHomeScreen from '../screens/CryptoHomeScreen';
 import CryptoNewsScreen from '../screens/CryptoNewsScreen';
 import StockHomeScreen from '../screens/StockHomeScreen';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const BottomTab = createBottomTabNavigator();
 
 const BottomTabNavigation = () => {
-    const [signedUser, setSignedUser] = useState();
-
-    const getSignedUserData = async () => {
-        const signedUserData = await AsyncStorage.getItem('SignedUserData');
-        setSignedUser(JSON.parse(signedUserData));
-    };
-
-    useEffect(() => {
-        getSignedUserData();
-    }, []);
-
     return (
         <BottomTab.Navigator screenOptions={{
             headerShown: false,
             tabBarStyle: styles.tabBarStyle,
-            tabBarActiveTintColor: '#5e80fc',
-            tabBarInactiveTintColor: '#808b9d',
+            tabBarActiveTintColor: '#5E80FC',
+            tabBarInactiveTintColor: '#808B9D',
         }}>
-            <BottomTab.Screen name='Crypto' component={CryptoHomeScreen} options={{
+            <BottomTab.Screen name='Cryptos' component={CryptoHomeScreen} options={{
                 tabBarLabelStyle: styles.tabBarLabelStyle,
                 tabBarIcon: ({ color, focused }) => !focused ? <FontAwesome name='bitcoin' size={26} color={color} /> :
                     <Zocial name='bitcoin' size={30} color={color} />
@@ -52,7 +40,7 @@ const BottomTabNavigation = () => {
                 tabBarIcon: ({ color, focused }) => !focused ? <FontAwesome5 name='star' size={22} color={color} /> :
                     <FontAwesome name='star' size={26} color={color} />
             }} />
-            <BottomTab.Screen name='News' component={CryptoNewsScreen} options={{
+            <BottomTab.Screen name='Crypto News' component={CryptoNewsScreen} options={{
                 tabBarLabelStyle: styles.tabBarLabelStyle,
                 tabBarIcon: ({ color, focused }) => !focused ? <Ionicons name='reader-outline' size={27} color={color} /> :
                     <Ionicons name='reader' size={29} color={color} />
@@ -89,7 +77,7 @@ const styles = StyleSheet.create({
         width: normalize(30),
         height: normalize(30),
         borderWidth: 2.5,
-        borderColor: '#5e80fc',
+        borderColor: '#5E80FC',
         borderRadius: 50,
     },
 });

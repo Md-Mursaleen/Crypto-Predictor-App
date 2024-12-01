@@ -23,14 +23,14 @@ const ProfileScreen = () => {
                 <Text style={styles.itemTextStyle}>Launch Screen</Text>
                 <View style={styles.itemSubContainer}>
                     <Text style={styles.itemSubTextStyle}>Home</Text>
-                    <Entypo name='chevron-small-right' size={20} color='#5e80fc' />
+                    <Entypo name='chevron-small-right' size={20} color='#5E80FC' />
                 </View>
             </View>
             <View style={[styles.itemContainer, { marginTop: 20 }]}>
                 <Text style={styles.itemTextStyle}>Appearance</Text>
                 <View style={styles.itemSubContainer}>
                     <Text style={styles.itemSubTextStyle}>Dark</Text>
-                    <Entypo name='chevron-small-right' size={20} color='#5e80fc' />
+                    <Entypo name='chevron-small-right' size={20} color='#5E80FC' />
                 </View>
             </View>
             <Text style={[styles.titleTextStyle, { marginTop: 35 }]}>Account</Text>
@@ -38,14 +38,14 @@ const ProfileScreen = () => {
                 <Text style={styles.itemTextStyle}>Payment Currency</Text>
                 <View style={styles.itemSubContainer}>
                     <Text style={styles.itemSubTextStyle}>USD</Text>
-                    <Entypo name='chevron-small-right' size={20} color='#5e80fc' />
+                    <Entypo name='chevron-small-right' size={20} color='#5E80FC' />
                 </View>
             </View>
             <View style={[styles.itemContainer, { marginTop: 20 }]}>
                 <Text style={styles.itemTextStyle}>Language</Text>
                 <View style={styles.itemSubContainer}>
                     <Text style={styles.itemSubTextStyle}>English</Text>
-                    <Entypo name='chevron-small-right' size={20} color='#5e80fc' />
+                    <Entypo name='chevron-small-right' size={20} color='#5E80FC' />
                 </View>
             </View>
             <Text style={[styles.titleTextStyle, { marginTop: 35 }]}>Assets</Text>
@@ -56,14 +56,14 @@ const ProfileScreen = () => {
                     <Text style={styles.itemTextStyle}>Current Portfolio</Text>
                     <View style={[styles.itemSubContainer, { marginLeft: 'auto' }]}>
                         <Text style={styles.itemSubTextStyle}>0 USD</Text>
-                        <Entypo name='chevron-small-right' size={20} color='#5e80fc' />
+                        <Entypo name='chevron-small-right' size={20} color='#5E80FC' />
                     </View>
                 </Pressable>
                 <Pressable onPress={() => navigation.navigate('Watchlist')}
                     style={[styles.subBottomContainer, { marginTop: 20 }]}>
                     <Image source={require('../../assets/images/star-icon.png')} style={styles.iconStyle} />
                     <Text style={styles.itemTextStyle}>Watchlist</Text>
-                    <Entypo name='chevron-small-right' size={20} color='#5e80fc' style={styles.arrowIconStyle} />
+                    <Entypo name='chevron-small-right' size={20} color='#5E80FC' style={styles.arrowIconStyle} />
                 </Pressable>
             </View>
             <Pressable onPress={() => signOutWithGoogle()} style={styles.buttonContainer}>
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontWeight: '600',
         fontFamily: 'Inter-Bold',
-        color: '#ffffff',
+        color: '#FFFFFF',
     },
     profileImageStyle: {
         marginBottom: normalize(8),
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: '600',
         fontFamily: 'Inter-Bold',
-        color: '#5e80fc',
+        color: '#5E80FC',
     },
     itemContainer: {
         marginLeft: normalize(15),
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
         fontSize: 14.5,
         fontWeight: '500',
         fontFamily: 'Inter-SemiBold',
-        color: '#808b9d',
+        color: '#808B9D',
     },
     itemSubContainer: {
         marginRight: normalize(15),
@@ -154,13 +154,13 @@ const styles = StyleSheet.create({
         marginBottom: normalize(20),
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#ea3943',
+        backgroundColor: '#EA3943',
         borderRadius: 5,
     },
     signOutTextStyle: {
         fontSize: 16,
         fontWeight: '500',
         fontFamily: 'Inter-SemiBold',
-        color: '#ffffff',
+        color: '#FFFFFF',
     },
 });

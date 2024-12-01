@@ -46,6 +46,21 @@ const CryptoDetailsScreen = ({ route }) => {
     const [selectedText, setSelectedText] = useState('7');
     const [candleChartVisible, setCandleChartVisible] = useState(true);
     const [keyboardOpen, setKeyboardOpen] = useState(false);
+    const [initialValues, setInitialValues] = useState({
+        open: 0,
+        high: 0,
+        low: 0,
+        close: 0,
+        datetime: '',
+    });
+
+    useEffect(() => {
+        if (candlechartData && candlechartData.length > 0) {
+            const [timestamp, open, high, low, close] = candlechartData[0];
+            const date = new Date(timestamp).toLocaleDateString();
+            setInitialValues({ open, high, low, close, datetime: date });
+        }
+    }, [candlechartData]);
 
     const fetchData = async () => {
         setLoading(true);
@@ -78,7 +93,7 @@ const CryptoDetailsScreen = ({ route }) => {
     const { id, name, symbol, image, market_data:
         { current_price: { usd }, market_cap_rank, price_change_percentage_24h } } = cryptoCoin;
     const { prices } = chartData;
-    const pricePercentage = price_change_percentage_24h < 0 ? '#d0585c' : '#6ac77e';
+    const pricePercentage = price_change_percentage_24h < 0 ? '#D0585C' : '#6AC77E';
 
     const formatPrice = ({ value }) => {
         'worklet';
@@ -171,13 +186,13 @@ const CryptoDetailsScreen = ({ route }) => {
         <View style={styles.container}>
             <LineChart.Provider data={prices.map(([timestamp, value]) => ({ timestamp, value }))}>
                 <View style={styles.headerContainer}>
-                    <Ionicons name='chevron-back-sharp' size={25} color='#636b77'
+                    <Ionicons name='chevron-back-sharp' size={25} color='#636B77'
                         onPress={() => navigation.goBack()} />
                     <View style={styles.informationContainer}>
                         <Image source={{ uri: image.small }} style={styles.imageStyle} />
                         <Text style={styles.symbolTextStyle}>{symbol.toUpperCase()}</Text>
                     </View>
-                    <FontAwesome color={cryptoinWatchlist() ? '#ffbf00' : '#636b77'} size={25}
+                    <FontAwesome color={cryptoinWatchlist() ? '#FFBF00' : '#636B77'} size={25}
                         name={cryptoinWatchlist() ? 'star' : 'star-o'} onPress={() => checkWatchlistData()} />
                 </View>
                 <View style={styles.cryptoInfoContainer}>
@@ -192,7 +207,7 @@ const CryptoDetailsScreen = ({ route }) => {
                         <LineChart.PriceText format={formatPrice} style={styles.priceTextStyle} />
                     </View>
                     <View style={[styles.percentageContainer, { backgroundColor: pricePercentage }]}>
-                        <AntDesign name={price_change_percentage_24h > 0 ? 'caretup' : 'caretdown'} color='#ffffff'
+                        <AntDesign name={price_change_percentage_24h > 0 ? 'caretup' : 'caretdown'} color='#FFFFFF'
                             size={12} style={styles.iconContainer} />
                         <Text style={styles.percentageTextStyle}>{price_change_percentage_24h?.toFixed(2)}%</Text>
                     </View>
@@ -202,9 +217,9 @@ const CryptoDetailsScreen = ({ route }) => {
                         <CryptoFilterDetails key={index} day={data.day} value={data.value}
                             selectedText={selectedText} setSelectedText={onChangeValue} />
                     ))}
-                    {!candleChartVisible ? (<MaterialIcons name='waterfall-chart' size={24} color='#6ac77e'
+                    {!candleChartVisible ? (<MaterialIcons name='waterfall-chart' size={24} color='#6AC77E'
                         onPress={() => showingCandleStickChart()} />) : (<MaterialIcons name='show-chart' size={24}
-                            color='#6ac77e' onPress={() => showingLineChart()} />)}
+                            color='#6AC77E' onPress={() => showingLineChart()} />)}
                 </View>
                 {candleChartVisible ? (
                     <CandlestickChart.Provider data={candlechartData.map(([timestamp, open, high, low, close]) =>
@@ -234,23 +249,23 @@ const CryptoDetailsScreen = ({ route }) => {
                             </View>
                         </View>
                         <CandlestickChart.DatetimeText style={styles.candleChartDateTimeContainer} />
-                        <View style={styles.bottomContainer}>
+                        {/* <View style={styles.bottomContainer}>
                             <TouchableOpacity onPress={onBuyButtonPressed}
-                                style={[styles.buttonContainer, { backgroundColor: '#6ac77e' }]} >
+                                style={[styles.buttonContainer, { backgroundColor: '#6AC77E' }]} >
                                 <Text style={styles.buttonTextStyle}>BUY</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={onSellButtonPressed}
-                                style={[styles.buttonContainer, { backgroundColor: '#d0585c' }]} >
+                                style={[styles.buttonContainer, { backgroundColor: '#D0585C' }]} >
                                 <Text style={styles.buttonTextStyle}>SELL</Text>
                             </TouchableOpacity>
-                        </View>
+                        </View> */}
                     </CandlestickChart.Provider>
                 ) : (
                     <LineChart height={SIZE / 2} width={SIZE}>
-                        <LineChart.Path color={usd > prices[0][1] ? '#6ac77e' : '#d0585c'}>
-                            <LineChart.Gradient color={usd > prices[0][1] ? '#6ac77e' : '#d0585c'} />
+                        <LineChart.Path color={usd > prices[0][1] ? '#6AC77E' : '#D0585C'}>
+                            <LineChart.Gradient color={usd > prices[0][1] ? '#6AC77E' : '#D0585C'} />
                         </LineChart.Path>
-                        <LineChart.CursorCrosshair color={usd > prices[0][1] ? '#6ac77e' : '#d0585c'} >
+                        <LineChart.CursorCrosshair color={usd > prices[0][1] ? '#6AC77E' : '#D0585C'} >
                             <LineChart.Tooltip textStyle={styles.lineChartTextStyle} />
                             <LineChart.Tooltip position='bottom'>
                                 <LineChart.DatetimeText style={styles.lineChartTextStyle} />
@@ -290,7 +305,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: '600',
         fontFamily: 'Inter-SemiBold',
-        color: '#d2d1d4',
+        color: '#D2D1D4',
     },
     cryptoInfoContainer: {
         marginTop: normalize(5),
@@ -309,14 +324,14 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '600',
         fontFamily: 'Inter-SemiBold',
-        color: '#ffffff',
+        color: '#FFFFFF',
     },
     positionContainer: {
         width: normalize(22),
         height: normalize(20),
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#ffffff',
+        backgroundColor: '#FFFFFF',
         borderRadius: 5,
     },
     positionTextStyle: {
@@ -329,7 +344,7 @@ const styles = StyleSheet.create({
         fontSize: 28,
         fontWeight: '600',
         fontFamily: 'Inter-SemiBold',
-        color: '#5e80fc',
+        color: '#5E80FC',
     },
     percentageContainer: {
         paddingHorizontal: normalize(5),
@@ -346,7 +361,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '600',
         fontFamily: 'Inter-Bold',
-        color: '#ffffff',
+        color: '#FFFFFF',
     },
     filterContainer: {
         marginBottom: normalize(20),
@@ -367,18 +382,18 @@ const styles = StyleSheet.create({
         fontSize: 13,
         fontWeight: '500',
         fontFamily: 'Inter-SemiBold',
-        color: '#7c7b7e',
+        color: '#7C7B7E',
     },
     candlechartTextStyle: {
         fontWeight: '600',
         fontFamily: 'Inter-Bold',
-        color: '#d6d6d8',
+        color: '#D6D6D8',
     },
     candleChartDateTimeContainer: {
         margin: normalize(10),
         fontWeight: '600',
         fontFamily: 'Inter-Bold',
-        color: '#d6d6d8',
+        color: '#D6D6D8',
     },
     bottomContainer: {
         marginTop: normalize(50),
@@ -400,12 +415,12 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '500',
         fontFamily: 'Inter-SemiBold',
-        color: '#ffffff',
+        color: '#FFFFFF',
     },
     lineChartTextStyle: {
         fontSize: 15,
         fontWeight: '600',
         fontFamily: 'Inter-Bold',
-        color: '#d6d6d8',
+        color: '#D6D6D8',
     },
 });

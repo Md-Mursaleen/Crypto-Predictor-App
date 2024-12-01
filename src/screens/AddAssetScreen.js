@@ -69,7 +69,7 @@ const AddAssetScreen = () => {
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
-                <Ionicons name='chevron-back-sharp' size={25} color='#d6d6d8'
+                <Ionicons name='chevron-back-sharp' size={25} color='#D6D6D8'
                     onPress={() => navigation.goBack()} style={{ marginLeft: 10 }} />
                 <Text style={styles.headerTextStyle}>Add New Asset</Text>
             </View>
@@ -90,18 +90,18 @@ const AddAssetScreen = () => {
                     <View style={styles.quantityContainer}>
                         <View style={{ flexDirection: 'row' }}>
                             <TextInput value={assetQuantity} placeholder='0'
-                                placeholderTextColor='#cdcdcd'
+                                placeholderTextColor='#CDCDCD'
                                 keyboardType='numeric'
                                 style={styles.textInputStyle}
                                 onChangeText={setAssetQuantity} />
-                            <Text style={[styles.symbolTextStyle, { color: assetQuantity === '' ? '#ffffff' : '#5e80fc' }]}>
+                            <Text style={[styles.symbolTextStyle, { color: assetQuantity === '' ? '#FFFFFF' : '#5E80FC' }]}>
                                 {selectedCoinData?.symbol.toUpperCase()}</Text>
                         </View>
-                        <Text style={[styles.priceTextStyle, { color: assetQuantity === '' ? '#ffffff' : '#5e80fc' }]}>
+                        <Text style={[styles.priceTextStyle, { color: assetQuantity === '' ? '#FFFFFF' : '#5E80FC' }]}>
                             {selectedCoinData?.market_data?.current_price?.usd} per coin</Text>
                     </View>
                     <Pressable onPress={addnewAsset} disabled={assetQuantity === ''}
-                        style={[styles.buttonContainer, { backgroundColor: assetQuantity === '' ? '#cdcdcd' : '#0052fe' }]} >
+                        style={[styles.buttonContainer, { backgroundColor: assetQuantity === '' ? '#CDCDCD' : '#0052FE' }]} >
                         <Text style={styles.buttonTextStyle}>Add New Asset</Text>
                     </Pressable>
                 </>
@@ -139,9 +139,9 @@ const styles = StyleSheet.create({
     dropdownitemContainer: {
         padding: normalize(16),
         marginTop: normalize(10),
-        backgroundColor: '#f8f8fa',
+        backgroundColor: '#F8F8FA',
         borderWidth: StyleSheet.hairlineWidth,
-        borderColor: '#ffffff',
+        borderColor: '#FFFFFF',
         borderRadius: 5,
     },
     dropdownItemTextStyle: {
@@ -152,13 +152,13 @@ const styles = StyleSheet.create({
     },
     textInputPropsStyle: {
         padding: normalize(12),
-        backgroundColor: '#f8f8fa',
+        backgroundColor: '#F8F8FA',
         fontSize: 14,
         fontWeight: '500',
         fontFamily: 'PlusJakartaSans-Medium',
         color: '#262626',
         borderWidth: 1.5,
-        borderColor: '#ffffff',
+        borderColor: '#FFFFFF',
         borderRadius: 5,
     },
     quantityContainer: {
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
         fontSize: 75,
         fontWeight: '500',
         fontFamily: 'Inter-SemiBold',
-        color: '#ffffff',
+        color: '#FFFFFF',
     },
     symbolTextStyle: {
         marginTop: normalize(15),
@@ -198,6 +198,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '600',
         fontFamily: 'Inter-SemiBold',
-        color: '#ffffff',
+        color: '#FFFFFF',
     },
 });

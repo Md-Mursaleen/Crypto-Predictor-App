@@ -62,10 +62,10 @@ export default LoginScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f8f8fa',
+        backgroundColor: '#F8F8FA',
     },
     imageStyle: {
-        marginTop: normalize(-25),
+        marginTop: normalize(-30),
         marginLeft: normalize(-5),
         width: '70%',
         height: '30%',
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         marginLeft: normalize(30),
         fontSize: 35,
         fontWeight: '600',
-        fontFamily: 'Inter-Bold',
+        fontFamily: 'PlusJakartaSans-Bold',
         color: '#000000',
     },
     subTitleTextStyle: {
@@ -84,15 +84,15 @@ const styles = StyleSheet.create({
         marginLeft: normalize(30),
         fontSize: 30,
         fontWeight: '600',
-        fontFamily: 'Inter-Bold',
-        color: '#0052fe',
+        fontFamily: 'PlusJakartaSans-Bold',
+        color: '#0052FE',
     },
     textStyle: {
         marginTop: normalize(10),
         marginLeft: normalize(30),
         fontSize: 16,
         fontWeight: '500',
-        fontFamily: 'Inter-SemiBold',
+        fontFamily: 'PlusJakartaSans-Medium',
         color: '#808080',
     },
     lottieAnimationStyle: {
@@ -106,17 +106,18 @@ const styles = StyleSheet.create({
     buttonContainer: {
         padding: normalize(14),
         marginTop: 'auto',
-        marginBottom: normalize(30),
+        marginBottom: normalize(20),
         marginHorizontal: normalize(20),
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#0052fe',
+        backgroundColor: '#0052FE',
         borderRadius: 5,
     },
     buttonTextStyle: {
         fontSize: 16,
         fontWeight: '500',
-        fontFamily: 'Inter-SemiBold',
-        color: '#ffffff',
+        fontFamily: 'PlusJakartaSans-SemiBold',
+        color: '#FFFFFF',
+        lineHeight: 24,
     },
 });

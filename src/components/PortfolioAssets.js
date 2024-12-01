@@ -44,7 +44,7 @@ const PortfolioAssets = () => {
     const deletebutton = (data) => {
         return (
             <Pressable style={styles.deleteButtonContainer} onPress={() => deletingAsset(data)}>
-                <FontAwesome name='trash-o' size={24} color='#ffffff' />
+                <FontAwesome name='trash-o' size={24} color='#FFFFFF' />
             </Pressable>
         );
     };
@@ -85,11 +85,11 @@ const PortfolioAssets = () => {
                                 <Text style={styles.balanceTextStyle}>Current Balance</Text>
                                 <Text style={styles.balanceValueTextStyle}>${currentBalance()?.toFixed(2)}</Text>
                                 <Text style={[styles.changePriceTextStyle,
-                                { color: currentValue() >= 0 ? '#6ac77e' : '#d0585c' }]}>${currentValue()} (24h)</Text>
+                                { color: currentValue() >= 0 ? '#6AC77E' : '#D0585C' }]}>${currentValue()} (24h)</Text>
                             </View>
                             <View style={[styles.percentageChangeContainer,
-                            { backgroundColor: currentValue() >= 0 ? '#6ac77e' : '#d0585c' }]}>
-                                <AntDesign name={currentValue() >= 0 ? 'caretup' : 'caretdown'} color='#ffffff'
+                            { backgroundColor: currentValue() >= 0 ? '#6AC77E' : '#D0585C' }]}>
+                                <AntDesign name={currentValue() >= 0 ? 'caretup' : 'caretdown'} color='#FFFFFF'
                                     style={styles.iconStyle} />
                                 <Text style={styles.percentageChangeTextStyle}>{currentpercentage()}%</Text>
                             </View>
@@ -100,7 +100,7 @@ const PortfolioAssets = () => {
                             <Text style={[styles.headerTextStyle, { marginLeft: normalize(35) }]}>24H Price</Text>
                             <View style={[styles.headerItemContainer, { marginRight: normalize(-8) }]}>
                                 <Text style={styles.headerTextStyle}>Holdings</Text>
-                                <AntDesign name='caretdown' color='#5e80fc' size={12} />
+                                <AntDesign name='caretdown' color='#5E80FC' size={12} />
                             </View>
                         </View>
                     </>
@@ -122,43 +122,44 @@ const styles = StyleSheet.create({
         marginLeft: normalize(15),
         fontSize: 25,
         fontWeight: '600',
-        fontFamily: 'Inter-Bold',
-        color: '#ffffff',
+        fontFamily: 'PlusJakartaSans-Bold',
+        color: '#FFFFFF',
     },
     lottieStyle: {
-        marginTop: normalize(60),
+        marginTop: 'auto',
         height: normalize(170),
         alignSelf: 'center',
     },
     headerTitleTextStyle: {
-        marginTop: normalize(80),
+        marginTop: normalize(20),
         fontSize: 26,
         fontWeight: '600',
-        fontFamily: 'Inter-Bold',
+        fontFamily: 'PlusJakartaSans-Bold',
         alignSelf: 'center',
-        color: '#d6d6d8',
+        color: '#D6D6D8',
     },
     headerSubTitleTextStyle: {
         fontSize: 16,
         fontWeight: '500',
-        fontFamily: 'Inter-SemiBold',
+        fontFamily: 'PlusJakartaSans-SemiBold',
         alignSelf: 'center',
-        color: '#808b9d',
+        color: '#808B9D',
     },
     buttonContainer: {
         padding: normalize(14),
         marginHorizontal: normalize(20),
-        marginTop: 'auto',
-        marginBottom: normalize(20),
+        marginBottom: normalize(30),
         alignItems: 'center',
-        backgroundColor: '#0052fe',
+        justifyContent: 'center',
+        backgroundColor: '#0052FE',
         borderRadius: 5,
     },
     buttonTextStyle: {
         fontSize: 16,
         fontWeight: '600',
-        fontFamily: 'Inter-SemiBold',
-        color: '#ffffff',
+        fontFamily: 'PlusJakartaSans-Semi',
+        color: '#FFFFFF',
+        lineHeight: 24,
     },
     balanceContainer: {
         marginTop: normalize(15),
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '600',
         fontFamily: 'Inter-Bold',
-        color: '#5e80fc',
+        color: '#5E80FC',
     },
     balanceValueTextStyle: {
         marginTop: normalize(5),
@@ -181,7 +182,7 @@ const styles = StyleSheet.create({
         fontSize: 28,
         fontWeight: '600',
         fontFamily: 'Inter-Bold',
-        color: '#d6d6d8',
+        color: '#D6D6D8',
     },
     changePriceTextStyle: {
         marginTop: normalize(4),
@@ -206,7 +207,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '600',
         fontFamily: 'Inter-Bold',
-        color: '#ffffff',
+        color: '#FFFFFF',
     },
     assetsTextStyle: {
         paddingVertical: normalize(20),
@@ -214,7 +215,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: '600',
         fontFamily: 'Inter-Bold',
-        color: '#d6d6d8',
+        color: '#D6D6D8',
     },
     headerContainer: {
         marginHorizontal: normalize(20),
@@ -227,7 +228,7 @@ const styles = StyleSheet.create({
         fontSize: 13,
         fontWeight: '500',
         fontFamily: 'Inter-SemiBold',
-        color: '#5e80fc',
+        color: '#5E80FC',
     },
     headerItemContainer: {
         flexDirection: 'row',
@@ -239,6 +240,6 @@ const styles = StyleSheet.create({
         marginLeft: normalize(20),
         alignItems: 'flex-end',
         justifyContent: 'center',
-        backgroundColor: '#ea3943',
+        backgroundColor: '#EA3943',
     },
 });

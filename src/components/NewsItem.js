@@ -1,12 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, Linking, Alert, Image } from 'react-native';
+import { StyleSheet, Text, View, Linking, Alert, Image, Pressable } from 'react-native';
 import { normalize } from './theme';
 import moment from 'moment';
 
 const NewsItem = ({ item }) => {
     // const { kind, domain, source, title, published_at, slug, currencies, url, created_at, votes, meta_data } = item;
     // const timeAgo = moment(new Date(created_at)).fromNow();
-
     const { title, news_site, updated_at, url, thumb_2x } = item;
     const timeAgo = moment.unix(updated_at).fromNow();
 
@@ -24,7 +23,7 @@ const NewsItem = ({ item }) => {
     };
 
     return (
-        <View style={styles.newsItemContainer}>
+        <Pressable onPress={() => openLink(url)} style={styles.newsItemContainer}>
             {thumb_2x && thumb_2x !== 'missing_large.png' && (
                 <Image source={{ uri: thumb_2x }} style={styles.newsItemImageStyle} />
             )}
@@ -34,7 +33,7 @@ const NewsItem = ({ item }) => {
                 <Text style={styles.textStyle}>{news_site} • </Text>
                 <Text style={styles.textStyle}>{timeAgo}</Text>
             </View>
-        </View>
+        </Pressable>
     );
 }
 
@@ -48,7 +47,7 @@ const styles = StyleSheet.create({
         width: '90%',
         height: 'auto',
         borderWidth: StyleSheet.hairlineWidth,
-        borderColor: '#5e80fc',
+        borderColor: '#5E80FC',
         borderRadius: 5,
     },
     linkTextStyle: {
@@ -57,13 +56,13 @@ const styles = StyleSheet.create({
         color: '#5e80fc',
         fontFamily: 'Mukta-Regular',
         textDecorationLine: 'underline',
-        textDecorationColor: '#5e80fc',
+        textDecorationColor: '#5E80FC',
     },
     newsTitleTextStyle: {
         marginBottom: 10,
         fontSize: 15.5,
         fontWeight: '500',
-        color: '#d6d6d8',
+        color: '#D6D6D8',
         fontFamily: 'Inter-SemiBold',
     },
     textContainer: {

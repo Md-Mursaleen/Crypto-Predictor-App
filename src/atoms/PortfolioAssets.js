@@ -1,19 +1,20 @@
-import { atom, selector } from "recoil";
-import { getWatchlistedCrypto } from "../service/requests";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { atom, selector } from 'recoil';
+import { getWatchlistedCrypto } from '../service/requests';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const portfoliostoredassets = selector({
-    key: "portfoliostoredassets",
+    key: 'portfoliostoredassets',
     get: async () => {
-        const jsonData = await AsyncStorage.getItem("@portfolio_crypto");
+        const jsonData = await AsyncStorage.getItem('@portfolio_crypto');
         return jsonData !== null ? JSON.parse(jsonData) : [];
     }
 });
+
 export const portfolioassetsinapi = selector({
-    key: "portfolioassetsinapi",
+    key: 'portfolioassetsinapi',
     get: async ({ get }) => {
         const portfolioassets = get(portfolioassetsinstore);
-        const portfolioassetsmarketData = await getWatchlistedCrypto(1, portfolioassets.map((portfolioasset) => portfolioasset.id).join(","));
+        const portfolioassetsmarketData = await getWatchlistedCrypto(1, portfolioassets.map((portfolioasset) => portfolioasset.id).join(','));
         const boughtportfolioassets = portfolioassets.map((boughtasset) => {
             const portfolioasset = portfolioassetsmarketData.filter((item) => boughtasset.id === item.id)[0];
             return {
@@ -25,11 +26,13 @@ export const portfolioassetsinapi = selector({
         return boughtportfolioassets.sort((item1, item2) => (item1.quantitybought * item1.current_price) * (item2.quantitybought * item2.current_price));
     }
 });
+
 export const portfolioassets = atom({
-    key: "portfolioassets",
+    key: 'portfolioassets',
     default: portfolioassetsinapi
 });
+
 export const portfolioassetsinstore = atom({
-    key: "portfolioassetsinstore",
+    key: 'portfolioassetsinstore',
     default: portfoliostoredassets
 });

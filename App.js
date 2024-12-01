@@ -22,13 +22,9 @@ export default function App() {
     async function prepare() {
       try {
         await Font.loadAsync({
-          'BebasNeue-Regular': require('./assets/fonts/BebasNeue-Regular.ttf'),
-          'Montserrat-Regular': require('./assets/fonts/Montserrat-Regular.ttf'),
-          'Montserrat-SemiBold': require('./assets/fonts/Montserrat-SemiBold.ttf'),
           'Inter-Bold': require('./assets/fonts/Inter-Bold.ttf'),
           'Inter-Regular': require('./assets/fonts/Inter-Regular.ttf'),
           'Inter-SemiBold': require('./assets/fonts/Inter-SemiBold.ttf'),
-          'OpenSans': require('./assets/fonts/OpenSans.ttf'),
           'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'),
           'Poppins-Medium': require('./assets/fonts/Poppins-Medium.ttf'),
           'Poppins-SemiBold': require('./assets/fonts/Poppins-SemiBold.ttf'),
@@ -46,8 +42,15 @@ export default function App() {
           'PlusJakartaSans-Medium': require('./assets/fonts/PlusJakartaSans-Medium.ttf'),
           'PlusJakartaSans-SemiBold': require('./assets/fonts/PlusJakartaSans-SemiBold.ttf'),
           'PlusJakartaSans-Regular': require('./assets/fonts/PlusJakartaSans-Regular.ttf'),
-          'PlusJakartaSans-ExtraBold': require('./assets/fonts/PlusJakartaSans-ExtraBold.ttf'),
           'PlusJakartaSans-Bold': require('./assets/fonts/PlusJakartaSans-Bold.ttf'),
+          'PlusJakartaSans-ExtraBold': require('./assets/fonts/PlusJakartaSans-ExtraBold.ttf'),
+          'Lora-SemiBold': require('./assets/fonts/Lora-SemiBold.ttf'),
+          'Lora-Medium': require('./assets/fonts/Lora-Medium.ttf'),
+          'Lora-Bold': require('./assets/fonts/Lora-Bold.ttf'),
+          'Lora-Regular': require('./assets/fonts/Lora-Regular.ttf'),
+          'Lora-SemiBoldItalic': require('./assets/fonts/Lora-SemiBoldItalic.ttf'),
+          'Lora-MediumItalic': require('./assets/fonts/Lora-MediumItalic.ttf'),
+          'Lora-BoldItalic': require('./assets/fonts/Lora-BoldItalic.ttf'),
         });
         await new Promise(resolve => setTimeout(resolve, 2000));
       } catch (error) {

@@ -5,7 +5,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const PortfolioAssetItem = ({ assetitem }) => {
     const { name, symbol, image, current_price, quantity, price_change_percentage_24h } = assetitem;
-    const pricePercentage = price_change_percentage_24h < 0 ? '#d0585c' : '#6ac77e';
+    const pricePercentage = price_change_percentage_24h < 0 ? '#D0585C' : '#6AC77E';
 
     return (
         <View style={styles.container}>
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: '600',
         fontFamily: 'Inter-Bold',
-        color: '#d6d6d8',
+        color: '#D6D6D8',
         textAlign: 'left',
     },
     symbolTextStyle: {

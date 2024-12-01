@@ -26,7 +26,7 @@ const CryptoItem = ({ cryptodata }) => {
         return market_cap;
     }
 
-    const pricePercentage = price_change_percentage_24h < 0 ? '#d0585c' : '#6ac77e';
+    const pricePercentage = price_change_percentage_24h < 0 ? '#D0585C' : '#6AC77E';
 
     return (
         <Pressable onPress={() => navigation.navigate('CryptoDetails', { cryptoid: id })}
@@ -64,7 +64,7 @@ const CryptoItem = ({ cryptodata }) => {
             <View style={styles.priceValueContainer}>
                 <Text style={styles.priceTextStyle}>{current_price === 1 ? '1.00' : current_price < 1
                     ? (current_price).toFixed(5) : current_price}$</Text>
-                <View style={[styles.pricePercentageContainer,]}>
+                <View style={styles.pricePercentageContainer}>
                     <AntDesign name={price_change_percentage_24h > 0 ? 'caretup' : 'caretdown'}
                         color={pricePercentage} size={10} style={styles.iconStyle} />
                     <Text style={[styles.priceChangeTextStyle, { color: pricePercentage }]}>
@@ -87,10 +87,10 @@ const styles = StyleSheet.create({
         borderBottomColor: '#141323',
     },
     positionTextStyle: {
-        fontSize: 14,
+        fontSize: 15,
         fontWeight: '500',
-        fontFamily: 'Rubik-Medium',
-        color: '#7c7b7e',
+        fontFamily: 'Mukta-SemiBold',
+        color: '#7C7B7E',
     },
     imageStyle: {
         marginLeft: normalize(23),
@@ -101,15 +101,15 @@ const styles = StyleSheet.create({
     symbolTextSytle: {
         marginRight: normalize(5),
         fontWeight: '600',
-        fontFamily: 'Inter-Bold',
-        color: '#d2d1d4',
+        fontFamily: 'PlusJakartaSans-Bold',
+        color: '#D2D1D4',
     },
     marketCapTextStyle: {
         marginTop: normalize(2),
         fontSize: 12,
         fontWeight: '500',
         fontFamily: 'Inter-SemiBold',
-        color: '#7c7b7e',
+        color: '#7C7B7E',
     },
     percentageChangeGraphContainer: {
         marginLeft: 'auto',
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: '500',
         fontFamily: 'Inter-SemiBold',
-        color: '#d6d6d8',
+        color: '#D6D6D8',
     },
     pricePercentageContainer: {
         width: normalize(65),

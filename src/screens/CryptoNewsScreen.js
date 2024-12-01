@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList, RefreshControl, ActivityIndicator } from 'react-native';
 import { normalize } from '../components/theme';
+import { NEWS_API_URL } from '../../utilis/env';
 import NewsItem from '../components/NewsItem';
-
-const API_URL = 'https://api.coingecko.com/api/v3/news';
 
 const CryptoNewsScreen = () => {
     const [newsData, setNewsData] = useState([]);
@@ -15,9 +14,11 @@ const CryptoNewsScreen = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch(API_URL, {
+            const response = await fetch(NEWS_API_URL, {
                 method: 'GET',
-                headers: { 'Content-Type': 'application/json' }
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             });
             const responseData = await response.json();
             if (responseData.data) {
@@ -43,7 +44,7 @@ const CryptoNewsScreen = () => {
                 <Text style={styles.headerTextStyle}>Top Crypto News</Text>
             </View>
             {loading && newsData.length === 0 ? (
-                <ActivityIndicator size='large' color='#ffffff' />
+                <ActivityIndicator size='large' color='#FFFFFF' />
             ) : error ? (
                 <View style={styles.errorContainer}>
                     <Text style={styles.errorTextStyle}>{error}</Text>
@@ -69,18 +70,19 @@ const styles = StyleSheet.create({
         backgroundColor: '#141323',
     },
     headerContainer: {
-        paddingTop: normalize(50),
+        paddingTop: normalize(45),
         marginLeft: normalize(10),
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
     },
     headerTextStyle: {
+        paddingBottom: normalize(5),
         marginLeft: normalize(10),
         fontSize: 25,
         fontWeight: '600',
-        fontFamily: 'Inter-Bold',
-        color: '#ffffff',
+        fontFamily: 'PlusJakartaSans-Bold',
+        color: '#FFFFFF',
     },
     flatListStyle: {
         flex: 1,
@@ -96,6 +98,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: '500',
         fontFamily: 'Inter-SemiBold',
-        color: '#ff6b6b',
+        color: '#FF6B6B',
     },
 });
